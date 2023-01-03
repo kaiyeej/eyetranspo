@@ -24,7 +24,7 @@ class LoginUser extends Connection
                 $cat = "User";
             }
 
-            $_SESSION['status'] = "in";
+            $_SESSION['et_status'] = "in";
             $_SESSION["et_username"] = $row['username'];
             $_SESSION["et_user_category"] = $row['user_category'];
             $_SESSION["et_user_cat"] = $cat;

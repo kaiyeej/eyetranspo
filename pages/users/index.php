@@ -5,8 +5,8 @@
             <h3 class="page-title">Users</h3>
         </div>
         <div class="header-right d-flex flex-wrap mt-2 mt-sm-0">
-            <button type="button" class="btn btn-primary mt-2 mt-sm-0 btn-icon-text">
-                <i class="mdi mdi-plus-circle"></i> Add Entry
+            <button type="button" onclick="addUser()" class="btn btn-primary mt-2 mt-sm-0 btn-icon-text">
+                <i class="mdi mdi-plus-circle"></i> Add
             </button>
         </div>
     </div>
@@ -23,7 +23,6 @@
                                 <th>Category</th>
                                 <th>Username</th>
                                 <th>Date Added</th>
-                                <th>Date Modified</th>
                             </tr>
                         </thead>
                     </table>
@@ -32,6 +31,7 @@
         </div>
     </div>
 </div>
+<?php include "modal_user.php"; ?>
 <script type="text/javascript">
     function addUser() {
         addModal();
@@ -73,9 +73,6 @@
                 },
                 {
                     "data": "date_added"
-                },
-                {
-                    "data": "date_last_modified"
                 }
             ]
         });

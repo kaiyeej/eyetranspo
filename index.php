@@ -1,7 +1,7 @@
 <?php
 include 'core/config.php';
 
-if (!isset($_SESSION["cdms_user_id"])) {
+if (!isset($_SESSION["et_status"])) {
  header("location:./login.php");
 }
 ?>
@@ -23,6 +23,7 @@ if (!isset($_SESSION["cdms_user_id"])) {
     <link rel="stylesheet" href="assets/vendors/jquery-bar-rating/css-stars.css" />
     <link rel="stylesheet" href="assets/vendors/font-awesome/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="assets/vendors/datatable/datatables.min.css"/>
+		<link rel="stylesheet" href="assets/sweetalert/sweetalert.css">
     <!-- plugins:js -->
     <script src="assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- End plugin css for this page -->
@@ -581,6 +582,7 @@ if (!isset($_SESSION["cdms_user_id"])) {
     <!-- endinject -->
     <!-- Plugin js for this page -->
     <script src="assets/vendors/select2/select2.min.js"></script>
+		<script src="assets/sweetalert/sweetalert.js"></script>
     <script src="assets/vendors/jquery-bar-rating/jquery.barrating.min.js"></script>
     <script type="text/javascript" src="assets/vendors/datatable/datatables.min.js"></script>
     <script src="assets/vendors/chart.js/Chart.min.js"></script>

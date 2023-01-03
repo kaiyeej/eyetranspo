@@ -6,5 +6,6 @@ $classes = array(
     'Courses'           => $pre_class . 'courses.php',
     'Homepage'          => $pre_class . 'homepage.php',
     'Users'             => $pre_class . 'users.php',
+    'LoginUser'         => $pre_class . 'loginuser.php',
     
 );
