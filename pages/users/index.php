@@ -17,7 +17,6 @@
                     <table id="dt_entries" class="table table-striped">
                         <thead class="">
                             <tr>
-                                <th><input type='checkbox' onchange="checkAll(this, 'dt_id')"></th>
                                 <th></th>
                                 <th>Fullname</th>
                                 <th>Category</th>
@@ -32,7 +31,7 @@
     </div>
 </div>
 <?php include "modal_user.php"; ?>
-<script type="text/javascript">
+<script type="text/javascript">  
     function addUser() {
         addModal();
         $("#div_password").show();
@@ -52,14 +51,10 @@
                 "url": "controllers/sql.php?c=" + route_settings.class_name + "&q=show",
                 "dataSrc": "data"
             },
-            "columns": [{
-                    "mRender": function(data, type, row) {
-                        return "<input type='checkbox' value=" + row.user_id + " class='dt_id' style='position: initial; opacity:1;'>";
-                    }
-                },
+            "columns": [
                 {
                     "mRender": function(data, type, row) {
-                        return "<center><button class='btn btn-icon btn-sm btn-light-info' onclick='getUserDetails(" + row.user_id + ")'><span class='flaticon-edit-1'></span></button></center>";
+                        return "<center><button class='btn btn-sm btn-danger' onclick='deleteEntry(" + row.user_id + ")'><span class='mdi mdi-delete'></span></button><button class='btn btn-sm btn-info' onclick='getUserDetails(" + row.user_id + ")'><span class='mdi mdi-lead-pencil'></span></button></center>";
                     }
                 },
                 {
@@ -77,6 +72,7 @@
             ]
         });
     }
+    
     $(document).ready(function() {
         getEntries();
     });

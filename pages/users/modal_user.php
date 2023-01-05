@@ -33,20 +33,18 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label><strong>Category</strong></label>
-                                <div>
-                                    <select class="form-control input-item" name="input[user_category]" id="user_category" required>
-                                        <option value="">&mdash; Please Select &mdash;</option>
-                                        <option value="A">Admin</option>
-                                        <option value="U">User</option>
-                                    </select>
-                                </div>
+                                <select class="js-example-basic-single form-control input-item" style="width: 100%;" name="input[user_category]" id="user_category" required>
+                                    <option value="">&mdash; Please Select &mdash;</option>
+                                    <option value="A">Admin</option>
+                                    <option value="U">User</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label><strong>Contact #</strong></label>
                                 <div>
-                                    <input type="text" class="form-control input-item" name="input[user_contact_num]" autocomplete="off" id="user_contact_num" placeholder="Contact number" required>
+                                    <input type="text" class="form-control input-item" name="input[user_contact_number]" autocomplete="off" id="user_contact_number" placeholder="Contact number" required>
                                 </div>
                             </div>
                         </div>
@@ -77,7 +75,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
                         Close
                     </button>
                     <button type="submit" id="btn_submit" class="btn btn-success">

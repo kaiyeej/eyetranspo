@@ -275,58 +275,48 @@ if (!isset($_SESSION["et_status"])) {
       }
     }
 
-    function deleteEntry() {
+    function deleteEntry(id) {
 
-      var count_checked = $("input[class='dt_id']:checked").length;
-
-      if (count_checked > 0) {
-        swal({
-            title: "Are you sure?",
-            text: "You will not be able to recover these entries!",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonClass: "btn-danger",
-            cancelButtonClass: "btn-primary",
-            confirmButtonText: "Yes, delete it!",
-            cancelButtonText: "No, cancel!",
-            closeOnConfirm: false,
-            closeOnCancel: false
-          },
-          function(isConfirm) {
-            if (isConfirm) {
-              var checkedValues = $("input[class='dt_id']:checked").map(function() {
-                return this.value;
-              }).get();
-
-              $.ajax({
-                type: "POST",
-                url: "controllers/sql.php?c=" + route_settings.class_name + "&q=remove",
-                data: {
-                  input: {
-                    ids: checkedValues
-                  }
-                },
-                success: function(data) {
-                  getEntries();
-                  var json = JSON.parse(data);
-                  console.log(json);
-                  if (json.data == 1) {
-                    success_delete();
-                  } else {
-                    failed_query(json);
-                  }
+      swal({
+          title: "Are you sure?",
+          text: "You will not be able to recover these entries!",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonClass: "btn-danger",
+          cancelButtonClass: "btn-primary",
+          confirmButtonText: "Yes, delete it!",
+          cancelButtonText: "No, cancel!",
+          closeOnConfirm: false,
+          closeOnCancel: false
+        },
+        function(isConfirm) {
+          if (isConfirm) {
+            $.ajax({
+              type: "POST",
+              url: "controllers/sql.php?c=" + route_settings.class_name + "&q=delete_entry",
+              data: {
+                input: {
+                  id: id
                 }
-              });
+              },
+              success: function(data) {
+                getEntries();
+                var json = JSON.parse(data);
+                console.log(json);
+                if (json.data == 1) {
+                  success_delete();
+                } else {
+                  failed_query(json);
+                }
+              }
+            });
 
-              $("#btn_delete").prop('disabled', true);
+            $("#btn_delete").prop('disabled', true);
 
-            } else {
-              swal("Cancelled", "Entries are safe :)", "error");
-            }
-          });
-      } else {
-        swal("Cannot proceed!", "Please select entries to delete!", "warning");
-      }
+          } else {
+            swal("Cancelled", "Entries are safe :)", "error");
+          }
+        });
     }
 
     // MODULE WITH DETAILS LIKE SALES
@@ -599,6 +589,7 @@ if (!isset($_SESSION["et_status"])) {
     <script src="assets/js/misc.js"></script>
     <script src="assets/js/settings.js"></script>
     <script src="assets/js/todolist.js"></script>
+    <script src="assets/js/select2.js"></script>
     <!-- endinject -->
     <!-- Custom js for this page -->
     <script src="assets/js/dashboard.js"></script>

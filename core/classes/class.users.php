@@ -18,7 +18,7 @@ class Users extends Connection
                 'user_fname' => $this->inputs['user_fname'],
                 'user_mname' => $this->inputs['user_mname'],
                 'user_lname' => $this->inputs['user_lname'],
-                'user_contact_num' => $this->inputs['user_contact_num'],
+                'user_contact_number' => $this->inputs['user_contact_number'],
                 'user_category' => $this->inputs['user_category'],
                 'user_email' => $this->inputs['user_email'],
                 'date_added' => $this->getCurrentDate(),
@@ -41,7 +41,7 @@ class Users extends Connection
                 'user_fname' => $this->inputs['user_fname'],
                 'user_mname' => $this->inputs['user_mname'],
                 'user_lname' => $this->inputs['user_lname'],
-                'user_contact_num' => $this->inputs['user_contact_num'],
+                'user_contact_number' => $this->inputs['user_contact_number'],
                 'user_category' => $this->inputs['user_category'],
                 'user_email' => $this->inputs['user_email'],
                 'username' => $username
@@ -55,6 +55,13 @@ class Users extends Connection
     {
         $ids = implode(",", $this->inputs['ids']);
         return $this->delete($this->table, "$this->pk IN($ids)");
+    }
+    
+    public function delete_entry()
+    {
+        $id = $this->inputs['id'];
+
+        return $this->delete($this->table, "$this->pk = $id");
     }
 
     public function show()
