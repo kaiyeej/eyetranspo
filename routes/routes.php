@@ -13,6 +13,22 @@ $routes = array(
         'class_name' => 'Users',
         'has_detail' => 0
     ),
+    "buses" => array(
+        'class_name' => 'Buses',
+        'has_detail' => 0
+    ),
+    "drivers" => array(
+        'class_name' => 'Drivers',
+        'has_detail' => 0
+    ),
+    "bus-routes" => array(
+        'class_name' => 'BusRoutes',
+        'has_detail' => 0
+    ),
+    "trips" => array(
+        'class_name' => 'Trips',
+        'has_detail' => 0
+    ),
 );
 /** END SET ROUTES */
 

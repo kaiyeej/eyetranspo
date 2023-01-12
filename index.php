@@ -44,9 +44,9 @@ if (!isset($_SESSION["et_status"])) {
       <div class="container-fluid page-body-wrapper">
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-          <div class="navbar-menu-wrapper d-flex align-items-stretch">
-            <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-              <span class="mdi mdi-chevron-double-left"></span>
+          <div class="navbar-menu-wrapper d-flex align-items-stretch" style="background:#fbc02d;">
+            <button class="navbar-toggler navbar-toggler align-self-center" style="background:#f57f17;" type="button" data-toggle="minimize">
+              <span class="mdi mdi-chevron-double-left"></span> 
             </button>
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
               <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg" alt="logo" /></a>
@@ -98,12 +98,10 @@ if (!isset($_SESSION["et_status"])) {
   <script type="text/javascript">
     var modal_detail_status = 0;
     $(document).ready(function() {
-      $(".select2").select2();
 
-      $(".select2").css({
-        "width": "100%"
-      });
-
+        $('.js-example-basic-single').select2({
+            dropdownParent: $('#modalEntry')
+        });
     });
 
     function logout() {
@@ -208,7 +206,7 @@ if (!isset($_SESSION["et_status"])) {
         cache: false,
         processData: false,
         success: function(data) {
-          route_settings.class_name != "SharedDocuments" ? getEntries() : "" ;
+          getEntries();
           
           var json = JSON.parse(data);
           if (route_settings.has_detail == 1) {
@@ -252,14 +250,16 @@ if (!isset($_SESSION["et_status"])) {
           const json = jsonParse.data;
 
           $("#hidden_id").val(id);
+          
 
           $('.input-item').map(function() {
             //console.log(this.id);
             const id_name = this.id;
             this.value = json[id_name];
+            $("#"+id_name).val(json[id_name]).trigger('change');
           });
 
-          //$(".select2").select2().trigger('change');
+          
 
           $("#modalLabel").html("<i class='flaticon-edit'></i> Update Entry");
           $("#modalEntry").modal('show');

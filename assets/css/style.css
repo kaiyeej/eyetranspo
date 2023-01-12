@@ -14542,7 +14542,7 @@ dl {
           border-top-left-radius: 50px;
           border-bottom-left-radius: 50px; }
       .sidebar .nav .nav-item:not(:nth-child(2)).active {
-        background: #1a55e3; }
+        background: #f57f17; }
         .sidebar .nav .nav-item:not(:nth-child(2)).active > .nav-link .menu-title {
           color: #ffffff;
           font-family: "Open Sans", sans-serif;

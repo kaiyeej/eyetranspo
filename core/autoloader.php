@@ -7,5 +7,9 @@ $classes = array(
     'Homepage'          => $pre_class . 'homepage.php',
     'Users'             => $pre_class . 'users.php',
     'LoginUser'         => $pre_class . 'loginuser.php',
+    'Buses'             => $pre_class . 'buses.php',
+    'Drivers'           => $pre_class . 'drivers.php',
+    'BusRoutes'         => $pre_class . 'busroutes.php',
+    'Trips'             => $pre_class . 'trips.php',
     
 );

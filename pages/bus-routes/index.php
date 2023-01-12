@@ -2,10 +2,10 @@
     <br>
     <div class="page-header flex-wrap">
         <div class="header-left">
-            <h3 class="page-title">Users</h3>
+            <h3 class="page-title">Bus Routes</h3>
         </div>
         <div class="header-right d-flex flex-wrap mt-2 mt-sm-0">
-            <button type="button" onclick="addUser()" class="btn btn-primary mt-2 mt-sm-0 btn-icon-text">
+            <button type="button" onclick="addModal()" class="btn btn-primary mt-2 mt-sm-0 btn-icon-text">
                 <i class="mdi mdi-plus-circle"></i> Add
             </button>
         </div>
@@ -18,9 +18,8 @@
                         <thead class="">
                             <tr>
                                 <th></th>
-                                <th>Fullname</th>
-                                <th>Category</th>
-                                <th>Username</th>
+                                <th>Name</th>
+                                <th>Description</th>
                                 <th>Date Added</th>
                             </tr>
                         </thead>
@@ -30,18 +29,8 @@
         </div>
     </div>
 </div>
-<?php include "modal_user.php"; ?>
-<script type="text/javascript">  
-    function addUser() {
-        addModal();
-        $("#div_password").show();
-    }
-
-    function getUserDetails(id) {
-        $("#div_password").hide();
-        getEntryDetails(id);
-    }
-
+<?php include "modal_route.php"; ?>
+<script type="text/javascript">
 
     function getEntries() {
         $("#dt_entries").DataTable().destroy();
@@ -54,17 +43,14 @@
             "columns": [
                 {
                     "mRender": function(data, type, row) {
-                        return "<center><button class='btn btn-sm btn-danger' onclick='deleteEntry(" + row.user_id + ")'><span class='mdi mdi-delete'></span></button><button class='btn btn-sm btn-info' onclick='getUserDetails(" + row.user_id + ")'><span class='mdi mdi-lead-pencil'></span></button></center>";
+                        return "<center><button class='btn btn-sm btn-danger' onclick='deleteEntry(" + row.route_id + ")'><span class='mdi mdi-delete'></span></button><button class='btn btn-sm btn-info' onclick='getEntryDetails(" + row.route_id + ")'><span class='mdi mdi-lead-pencil'></span></button></center>";
                     }
                 },
                 {
-                    "data": "user_fullname"
+                    "data": "route_name"
                 },
                 {
-                    "data": "category"
-                },
-                {
-                    "data": "username"
+                    "data": "route_desc"
                 },
                 {
                     "data": "date_added"
@@ -75,6 +61,5 @@
     
     $(document).ready(function() {
         getEntries();
-        
     });
 </script>

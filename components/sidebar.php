@@ -29,6 +29,36 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="buses">
+                <i class="mdi mdi-bus menu-icon"></i>
+                <span class="menu-title">Buses</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="drivers">
+                <i class="mdi mdi-worker menu-icon"></i>
+                <span class="menu-title">Drivers</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="bus-routes">
+                <i class="mdi mdi-routes menu-icon"></i>
+                <span class="menu-title">Routes</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="trips">
+                <i class="mdi mdi-road-variant menu-icon"></i>
+                <span class="menu-title">Trips</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="trip-schedule">
+                <i class="mdi mdi-calendar-clock menu-icon"></i>
+                <span class="menu-title">Trip Schedule</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="users">
                 <i class="mdi mdi-account-multiple-plus menu-icon"></i>
                 <span class="menu-title">Users</span>
