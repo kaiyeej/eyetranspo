@@ -48,7 +48,7 @@ if (isset($_SESSION["et_status"])) {
                   <div class="mt-3">
                     <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-semibold auth-form-btn">SIGN IN</button>
                   </div>
-                  <div class="text-center mt-4 font-weight-light"> Don't have an account? <a href="register.html" class="text-primary">Create</a>
+                  <!-- <div class="text-center mt-4 font-weight-light"> Don't have an account? <a href="register.html" class="text-primary">Create</a> -->
                   </div>
                 </form>
               </div>
