@@ -8,11 +8,11 @@
 
 // offline
 
-
 define("host", "localhost");
-define("username", "root");
-define("password", "");
-define("database", "eyetranspo_db");
+define("username", "u981310152_et_root");
+define("password", "+4mC~tK4dyI");
+define("database", "u981310152_eyetranspo_db");
+
 
 
 
