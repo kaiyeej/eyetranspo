@@ -7,9 +7,9 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 require_once '../core_mobile/config.php';
 
-$heading = $_REQUEST['heading'];
+$headings = $_REQUEST['headings'];
 $response_array['array_data'] = array();
-$fetch = $mysqli_connect->query("SELECT * FROM tbl_trips where headings='$heading'");
+$fetch = $mysqli_connect->query("SELECT * FROM tbl_trips where headings='$headings'");
 while ($row = $fetch->fetch_array()) {
     $response = array();
 
