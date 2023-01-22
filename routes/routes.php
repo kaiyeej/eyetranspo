@@ -29,6 +29,10 @@ $routes = array(
         'class_name' => 'Trips',
         'has_detail' => 0
     ),
+    "trip-schedule" => array(
+        'class_name' => 'TripSchedule',
+        'has_detail' => 0
+    ),
 );
 /** END SET ROUTES */
 

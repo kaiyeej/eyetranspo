@@ -1,19 +1,18 @@
 <?php
 
-class Trips extends Connection
+class TripSchedule extends Connection
 {
-    private $table = 'tbl_trips';
-    public $pk = 'trip_id';
-    public $name = 'bus_id';
+    private $table = 'tbl_trip_schedule';
+    public $pk = 'trip_schedule_id';
+    public $name = 'trip_schedule_marker';
 
     public function add()
     {
         $form = array(
-            $this->name         => $this->clean($this->inputs[$this->name]),
-            'trip_schedule_id'  => $this->inputs['trip_schedule_id'],
-            'date_departed'     => $this->inputs['date_departed'],
-            'date_arrived'      => $this->inputs['date_arrived'],
-            'headings'          => $this->inputs['headings']
+            $this->name             => $this->clean($this->inputs[$this->name]),
+            'trip_schedule_time'    => $this->inputs['trip_schedule_time'],
+            'route_id'              => $this->inputs['route_id'],
+            'trip_schedule_fare'    => $this->inputs['trip_schedule_fare']
         );
         return $this->insert($this->table, $form);
     }
@@ -22,11 +21,10 @@ class Trips extends Connection
     {
         $primary_id = $this->inputs[$this->pk];
         $form = array(
-            $this->name         => $this->clean($this->inputs[$this->name]),
-            'trip_schedule_id'  => $this->inputs['trip_schedule_id'],
-            'date_departed'     => $this->inputs['date_departed'],
-            'date_arrived'      => $this->inputs['date_arrived'],
-            'headings'          => $this->inputs['headings']
+            $this->name             => $this->clean($this->inputs[$this->name]),
+            'trip_schedule_time'    => $this->inputs['trip_schedule_time'],
+            'route_id'              => $this->inputs['route_id'],
+            'trip_schedule_fare'    => $this->inputs['trip_schedule_fare']
         );
         
         return $this->update($this->table, $form, "$this->pk = '$primary_id'");
@@ -35,14 +33,11 @@ class Trips extends Connection
     public function show()
     {
         $rows = array();
-        $TripSchedule = new TripSchedule();
-        $Buses = new Buses();
+        $Drivers = new Drivers();
         $param = isset($this->inputs['param']) ? $this->inputs['param'] : null;
         $rows = array();
         $result = $this->select($this->table, '*', $param);
         while ($row = $result->fetch_assoc()) {
-            $row['bus'] = $Buses->name($row['bus_id']);
-            $row['schedule'] = $TripSchedule->name($row['trip_schedule_id']);
             $rows[] = $row;
         }
         return $rows;
