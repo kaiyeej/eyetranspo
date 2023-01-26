@@ -75,4 +75,14 @@ class Trips extends Connection
         return $this->delete($this->table, "$this->pk = $id");
     }
 
+    public function arrived(){
+
+        $primary_id = $this->inputs['id'];
+        $form = array(
+            'status' => 'A',
+        );
+        
+        return $this->update($this->table, $form, "$this->pk = $primary_id");
+    }
+
 }

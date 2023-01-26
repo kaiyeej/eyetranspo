@@ -4,6 +4,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title" id="modalLabel"><span class='fa fa-pen'></span> Add Entry</h4>
+                    <button class="btn btn-info btn-sm" id="btn_arrived" onclick="arrived()"><i class="mdi mdi-check-all"></i> Arrived</button>
                 </div>
                 <div class="modal-body">
                     <input type="hidden" id="hidden_id" name="input[trip_id]">

@@ -136,6 +136,10 @@ if (!isset($_SESSION["et_status"])) {
       swal("Success!", "Successfully added entry!", "success");
     }
 
+    function success_arrived() {
+      swal("Success!", "Successfully arrived!", "success");
+    }
+
     function success_update() {
       swal("Success!", "Successfully updated entry!", "success");
     }

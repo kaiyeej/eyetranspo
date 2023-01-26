@@ -5,7 +5,7 @@
             <h3 class="page-title">Trips</h3>
         </div>
         <div class="header-right d-flex flex-wrap mt-2 mt-sm-0">
-            <button type="button" onclick="addModal()" class="btn btn-primary mt-2 mt-sm-0 btn-icon-text">
+            <button type="button" onclick="addTrips()" class="btn btn-primary mt-2 mt-sm-0 btn-icon-text">
                 <i class="mdi mdi-plus-circle"></i> Add
             </button>
         </div>
@@ -36,6 +36,71 @@
 <?php include "modal_trip.php"; ?>
 <script type="text/javascript">
 
+    function addTrips(){
+        $("#btn_arrived").hide();
+        addModal();
+    }
+
+    function getTrips(id, status){
+        if(status != "A"){
+            $("#btn_arrived").show();
+        }else{
+            $("#btn_arrived").hide();
+        }
+
+        getEntryDetails(id);
+        
+    }
+
+    function arrived() {
+        $("#btn_arrived").prop('disabled', true);
+        $("#btn_arrived").html("<span class='fa fa-spinner fa-spin'></span>");
+
+        var id = $("#hidden_id").val();
+
+        swal({
+            title: "Are you sure?",
+            text: "This entries will be mark arrived!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonClass: "btn-info",
+            cancelButtonClass: "btn-primary",
+            confirmButtonText: "Yes, mark as arrived!",
+            cancelButtonText: "No, cancel!",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+        function(isConfirm) {
+            if (isConfirm) {
+                $.ajax({
+                    type: "POST",
+                    url: "controllers/sql.php?c=" + route_settings.class_name + "&q=arrived",
+                    data: {
+                        input: {
+                            id: id
+                        }
+                    },
+                    success: function(data) {
+                        getEntries();
+                        var json = JSON.parse(data);
+                        if (json.data == 1) {
+                            success_arrived();
+                            $("#modalEntry").modal('hide');
+                        } else {
+                            failed_query(json);
+                        }
+                    }
+                });
+            } else {
+                swal("Cancelled", "Entries are safe :)", "error");
+            }
+
+            $("#btn_arrived").prop('disabled', false);
+            $("#btn_arrived").html("<span class='mdi mdi-check-all'></span> Arrived");
+        });
+       
+    }
+
     function getEntries() {
         $("#dt_entries").DataTable().destroy();
         $("#dt_entries").DataTable({
@@ -44,10 +109,9 @@
                 "url": "controllers/sql.php?c=" + route_settings.class_name + "&q=show",
                 "dataSrc": "data"
             },
-            "columns": [
-                {
+            "columns": [{
                     "mRender": function(data, type, row) {
-                        return "<center><button class='btn btn-sm btn-danger' onclick='deleteEntry(" + row.trip_id + ")'><span class='mdi mdi-delete'></span></button><button class='btn btn-sm btn-info' onclick='getEntryDetails(" + row.trip_id + ")'><span class='mdi mdi-lead-pencil'></span></button></center>";
+                        return "<center><button class='btn btn-sm btn-danger' onclick='deleteEntry(" + row.trip_id + ")'><span class='mdi mdi-delete'></span></button><button class='btn btn-sm btn-info' onclick='getTrips(" + row.trip_id + ",\""+ row.status + "\")'><span class='mdi mdi-lead-pencil'></span></button></center>";
                     }
                 },
                 {
@@ -76,7 +140,7 @@
             ]
         });
     }
-    
+
     $(document).ready(function() {
         getEntries();
         getSelectOption('Buses', 'bus_id', 'bus_number');
