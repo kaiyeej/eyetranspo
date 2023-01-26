@@ -4,12 +4,12 @@ class TripSchedule extends Connection
 {
     private $table = 'tbl_trip_schedule';
     public $pk = 'trip_schedule_id';
-    public $name = 'trip_schedule_marker';
+    public $name = 'trip_schedule_time';
 
     public function add()
     {
         $form = array(
-            $this->name             => $this->clean($this->inputs[$this->name]),
+            // $this->name             => $this->clean($this->inputs[$this->name]),
             'trip_schedule_time'    => $this->inputs['trip_schedule_time'],
             'route_id'              => $this->inputs['route_id'],
             'trip_schedule_fare'    => $this->inputs['trip_schedule_fare']
@@ -21,7 +21,7 @@ class TripSchedule extends Connection
     {
         $primary_id = $this->inputs[$this->pk];
         $form = array(
-            $this->name             => $this->clean($this->inputs[$this->name]),
+            // $this->name             => $this->clean($this->inputs[$this->name]),
             'trip_schedule_time'    => $this->inputs['trip_schedule_time'],
             'route_id'              => $this->inputs['route_id'],
             'trip_schedule_fare'    => $this->inputs['trip_schedule_fare']

@@ -3,7 +3,7 @@ $Homepage = new Homepage();
 ?>
 <div class="content-wrapper pb-0">
   <div class="row">
-    <div class="col-sm-4 stretch-card grid-margin">
+    <div class="col-sm-5 stretch-card grid-margin">
       <div class="card">
         <div class="card-body">
           <div class="d-flex border-bottom mb-4 pb-2">
@@ -53,77 +53,9 @@ $Homepage = new Homepage();
         </div>
       </div>
     </div>
-    <div class="col-xl-8 stretch-card grid-margin">
-      <div class="card">
-        <div class="card-body pb-0">
-          <h4 class="card-title mb-0">User reviews</h4>
-        </div>
-        <div class="card-body p-0">
-          <div class="table-responsive">
-            <table class="table custom-table text-dark">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Rate</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    Juan Dela Cruz
-                  </td>
-                  <td>
-                    <div class="d-flex">
-                      <div class="br-wrapper br-theme-css-stars"><select id="star-1" name="rating" autocomplete="off" style="display: none;">
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                        </select>
-                        
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Stephen Curry
-                  </td>
-                  <td>
-                    <div class="d-flex">
-                      <div class="br-wrapper br-theme-css-stars"><select id="star-4" name="rating" autocomplete="off" style="display: none;">
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                        </select>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Maria Ortiz
-                  </td>
-                  <td>
-                    <div class="d-flex">
-                      <div class="br-wrapper br-theme-css-stars"><select id="star-7" name="rating" autocomplete="off" style="display: none;">
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                        </select>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+    <div class="col-xl-7 stretch-card grid-margin">
+      <div class="card" style="padding-top:30px;">
+       <img src="assets/images/logo-banner.png">
       </div>
     </div>
   </div>

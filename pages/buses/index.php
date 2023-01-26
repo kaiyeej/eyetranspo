@@ -74,5 +74,6 @@
     $(document).ready(function() {
         getEntries();
         getSelectOption('Drivers', 'driver_id', 'driver');
+        getSelectOption('BusRoutes', 'route_id', 'route_name');
     });
 </script>

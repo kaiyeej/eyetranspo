@@ -60,7 +60,9 @@
                     "data": "headings"
                 },
                 {
-                    "data": "status"
+                    "mRender": function(data, type, row) {
+                        return row.status == "A" ? "<strong style='color:green;'>Arrived</strong>" : "---";
+                    }
                 },
                 {
                     "data": "date_departed"

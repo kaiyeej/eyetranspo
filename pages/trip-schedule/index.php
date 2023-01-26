@@ -18,7 +18,7 @@
                         <thead class="">
                             <tr>
                                 <th></th>
-                                <th>Marker</th>
+                                <!-- <th>Marker</th> -->
                                 <th>Time</th>
                                 <th>Route</th>
                                 <th>Fare</th>
@@ -48,9 +48,9 @@
                         return "<center><button class='btn btn-sm btn-danger' onclick='deleteEntry(" + row.trip_schedule_id + ")'><span class='mdi mdi-delete'></span></button><button class='btn btn-sm btn-info' onclick='getEntryDetails(" + row.trip_schedule_id + ")'><span class='mdi mdi-lead-pencil'></span></button></center>";
                     }
                 },
-                {
-                    "data": "trip_schedule_marker"
-                },
+                // {
+                //     "data": "trip_schedule_marker"
+                // },
                 {
                     "data": "trip_schedule_time"
                 },

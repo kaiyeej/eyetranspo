@@ -18,7 +18,7 @@ class Buses extends Connection
                 'bus_plate_number'       => $this->inputs['bus_plate_number'],
                 'bus_operator'           => $this->inputs['bus_operator'],
                 'bus_max_capacity'       => $this->inputs['bus_max_capacity'],
-                'bus_route'              => $this->inputs['bus_route'],
+                'route_id'               => $this->inputs['route_id'],
                 'bus_remarks'            => $this->inputs['bus_remarks'],
             );
             return $this->insert($this->table, $form);
@@ -38,7 +38,7 @@ class Buses extends Connection
                 'bus_plate_number'       => $this->inputs['bus_plate_number'],
                 'bus_operator'           => $this->inputs['bus_operator'],
                 'bus_max_capacity'       => $this->inputs['bus_max_capacity'],
-                'bus_route'              => $this->inputs['bus_route'],
+                'route_id'               => $this->inputs['route_id'],
                 'bus_remarks'            => $this->inputs['bus_remarks'],
             );
             return $this->update($this->table, $form, "$this->pk = '$primary_id'");

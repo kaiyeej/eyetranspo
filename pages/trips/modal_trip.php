@@ -27,13 +27,13 @@
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label>Date Departed</label>
-                                <input type="date" class="form-control input-item" name="input[date_departed]" id="date_departed"  autocomplete="off" required>
+                                <input type="datetime-local" class="form-control input-item" name="input[date_departed]" id="date_departed"  autocomplete="off" required>
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label>Date Arrived</label>
-                                <input type="date" class="form-control input-item" name="input[date_arrived]" id="date_arrived" autocomplete="off" required>
+                                <input type="datetime-local" class="form-control input-item" name="input[date_arrived]" id="date_arrived" autocomplete="off" required>
                             </div>
                         </div>
                         <div class="col-lg-12">

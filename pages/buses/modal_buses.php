@@ -50,7 +50,9 @@
                             <div class="form-group">
                                 <label>Route</label>
                                 <div>
-                                    <input type="text" class="form-control input-item" name="input[bus_route]" autocomplete="off" id="bus_route" placeholder="Bus Route" required>
+                                    <select class="js-example-basic-single form-control input-item" style="width: 100%;" name="input[route_id]" id="route_id" required>
+                                        <option value="">&mdash; Please Select &mdash;</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>

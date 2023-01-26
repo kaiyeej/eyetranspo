@@ -8,12 +8,12 @@
                 <div class="modal-body">
                     <input type="hidden" id="hidden_id" name="input[trip_schedule_id]">
                     <div class="row">
-                        <div class="col-lg-12">
+                        <!-- <div class="col-lg-12">
                             <div class="form-group">
                                 <label>Marker</label>
                                 <input type="text" class="form-control input-item" name="input[trip_schedule_marker]" id="trip_schedule_marker"  autocomplete="off" required>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label>Time</label>
