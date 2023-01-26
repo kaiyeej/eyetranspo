@@ -42,7 +42,7 @@ class BusRoutes extends Connection
         $param = isset($this->inputs['param']) ? $this->inputs['param'] : null;
         $rows = array();
         $result = $this->select($this->table, '*', $param);
-        while ($row = $result->fetch_assoc()) {
+        while ($row = $result->fetch_array()) {
             $rows[] = $row;
         }
         return $rows;
