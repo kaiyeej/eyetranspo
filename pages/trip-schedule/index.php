@@ -2,7 +2,7 @@
     <br>
     <div class="page-header flex-wrap">
         <div class="header-left">
-            <h3 class="page-title">Trips</h3>
+            <h3 class="page-title">Trip Schedule</h3>
         </div>
         <div class="header-right d-flex flex-wrap mt-2 mt-sm-0">
             <button type="button" onclick="addModal()" class="btn btn-primary mt-2 mt-sm-0 btn-icon-text">
@@ -18,12 +18,10 @@
                         <thead class="">
                             <tr>
                                 <th></th>
-                                <th>Bus</th>
-                                <th>Schedule</th>
-                                <th>Headings</th>
-                                <th>Status</th>
-                                <th>Date Departed</th>
-                                <th>Date Arrived</th>
+                                <th>Marker</th>
+                                <th>Time</th>
+                                <th>Route</th>
+                                <th>Fare</th>
                                 <th>Date Added</th>
                             </tr>
                         </thead>
@@ -33,7 +31,7 @@
         </div>
     </div>
 </div>
-<?php include "modal_trip.php"; ?>
+<?php include "modal_trip_schedule.php"; ?>
 <script type="text/javascript">
 
     function getEntries() {
@@ -47,26 +45,20 @@
             "columns": [
                 {
                     "mRender": function(data, type, row) {
-                        return "<center><button class='btn btn-sm btn-danger' onclick='deleteEntry(" + row.trip_id + ")'><span class='mdi mdi-delete'></span></button><button class='btn btn-sm btn-info' onclick='getEntryDetails(" + row.trip_id + ")'><span class='mdi mdi-lead-pencil'></span></button></center>";
+                        return "<center><button class='btn btn-sm btn-danger' onclick='deleteEntry(" + row.trip_schedule_id + ")'><span class='mdi mdi-delete'></span></button><button class='btn btn-sm btn-info' onclick='getEntryDetails(" + row.trip_schedule_id + ")'><span class='mdi mdi-lead-pencil'></span></button></center>";
                     }
                 },
                 {
-                    "data": "bus"
+                    "data": "trip_schedule_marker"
                 },
                 {
-                    "data": "schedule"
+                    "data": "trip_schedule_time"
                 },
                 {
-                    "data": "headings"
+                    "data": "route_id"
                 },
                 {
-                    "data": "status"
-                },
-                {
-                    "data": "date_departed"
-                },
-                {
-                    "data": "date_arrived"
+                    "data": "trip_schedule_fare"
                 },
                 {
                     "data": "date_added"
@@ -77,7 +69,6 @@
     
     $(document).ready(function() {
         getEntries();
-        getSelectOption('Buses', 'bus_id', 'bus_number');
-        getSelectOption('TripSchedule', 'trip_schedule_id', 'trip_schedule_time');
+        getSelectOption('BusRoutes', 'route_id', 'route_name');
     });
 </script>

@@ -36,7 +36,8 @@
                                 <select class="js-example-basic-single form-control input-item" style="width: 100%;" name="input[user_category]" id="user_category" required>
                                     <option value="">&mdash; Please Select &mdash;</option>
                                     <option value="A">Admin</option>
-                                    <option value="U">User</option>
+                                    <option value="P">Passenger</option>
+                                    <option value="C">Conductor</option>
                                 </select>
                             </div>
                         </div>

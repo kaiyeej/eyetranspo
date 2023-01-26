@@ -23,7 +23,7 @@ class Users extends Connection
                 'user_email' => $this->inputs['user_email'],
                 'date_added' => $this->getCurrentDate(),
                 'username' => $this->inputs['username'],
-                'password' => md5('$pass')
+                'password' => md5($pass)
             );
             return $this->insert($this->table, $form);
         }
@@ -71,7 +71,7 @@ class Users extends Connection
         $result = $this->select($this->table, '*', $param);
         while ($row = $result->fetch_assoc()) {
             $row['user_fullname'] = $row['user_fname']." ".$row['user_mname']." ".$row['user_lname'];
-            $row['category'] = ($row['user_category'] == "A" ? "Admin" : "Staff");
+            $row['category'] = $row['user_category'] == "A" ? "Admin" : ($row['user_category'] == "P" ? "Passenger" : "Conductor");
             $rows[] = $row;
         }
         return $rows;

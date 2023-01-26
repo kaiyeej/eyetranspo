@@ -11,5 +11,6 @@ $classes = array(
     'Drivers'           => $pre_class . 'drivers.php',
     'BusRoutes'         => $pre_class . 'busroutes.php',
     'Trips'             => $pre_class . 'trips.php',
+    'TripSchedule'      => $pre_class . 'tripschedule.php',
     
 );
