@@ -98,7 +98,6 @@ if (!isset($_SESSION["et_status"])) {
   <script type="text/javascript">
     var modal_detail_status = 0;
     $(document).ready(function() {
-
         $('.js-example-basic-single').select2({
             dropdownParent: $('#modalEntry')
         });
@@ -117,7 +116,6 @@ if (!isset($_SESSION["et_status"])) {
           }
         });
       }
-      
     }
 
     function schema() {
@@ -184,6 +182,10 @@ if (!isset($_SESSION["et_status"])) {
       modal_detail_status = 0;
       $("#hidden_id").val(0);
       document.getElementById("frm_submit").reset();
+
+      $('.js-example-basic-single').select2({
+          dropdownParent: $('#modalEntry')
+      });
 
       var element = document.getElementById('reference_code');
       if (typeof(element) != 'undefined' && element != null) {
