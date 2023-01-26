@@ -55,7 +55,7 @@
                     "data": "trip_schedule_time"
                 },
                 {
-                    "data": "route_id"
+                    "data": "route"
                 },
                 {
                     "data": "trip_schedule_fare"

@@ -16,12 +16,13 @@ class Drivers extends Connection
         }
         
         $form = array(
-            $this->name        => $this->clean($this->inputs[$this->name]),
-            'driver_mname'     => $this->inputs['driver_mname'],
-            'driver_lname'     => $this->inputs['driver_lname'],
-            'driver_img'       => $driver_img,
-            'driver_address'   => $this->inputs['driver_address'],
-            'driver_remarks'   => $this->inputs['driver_remarks'],
+            $this->name               => $this->clean($this->inputs[$this->name]),
+            'driver_mname'            => $this->inputs['driver_mname'],
+            'driver_lname'            => $this->inputs['driver_lname'],
+            'driver_img'              => $driver_img,
+            'driver_address'          => $this->inputs['driver_address'],
+            'driver_contact_number'   => $this->inputs['driver_contact_number'],
+            'driver_remarks'          => $this->inputs['driver_remarks'],
         );
         
         return $this->insert($this->table, $form);
@@ -42,6 +43,7 @@ class Drivers extends Connection
                 'driver_mname'     => $this->inputs['driver_mname'],
                 'driver_lname'     => $this->inputs['driver_lname'],
                 'driver_address'   => $this->inputs['driver_address'],
+                'driver_contact_number'   => $this->inputs['driver_contact_number'],
                 'driver_remarks'   => $this->inputs['driver_remarks'],
             );
             return $this->update($this->table, $form, "$this->pk = '$primary_id'");

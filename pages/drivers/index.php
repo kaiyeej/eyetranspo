@@ -72,7 +72,7 @@
                 },
                 {
                     "mRender": function(data, type, row) {
-                        return row.driver_img == "" ? "<img style='width:70px;' src='assets/images/no_image.jpg' onclick=\"uploadImage('" + row.driver_id + "')\">" : "<img src='assets/drivers/" + row.driver_img + "' style='width:70px;border-radius: 0%;' onclick=\"uploadImage('" + row.driver_id + "')\">";
+                        return row.driver_img == "" ? "<img style='width:70px;' src='assets/images/no_image.jpg' onclick=\"uploadImage('" + row.driver_id + "')\">" : "<img src='assets/drivers/" + row.driver_img + "' style='width: 70px;height: fit-content;border-radius: 0%;' onclick=\"uploadImage('" + row.driver_id + "')\">";
                     }
                 },
                 {

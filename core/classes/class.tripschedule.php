@@ -33,11 +33,12 @@ class TripSchedule extends Connection
     public function show()
     {
         $rows = array();
-        $Drivers = new Drivers();
+        $BusRoutes = new BusRoutes();
         $param = isset($this->inputs['param']) ? $this->inputs['param'] : null;
         $rows = array();
         $result = $this->select($this->table, '*', $param);
         while ($row = $result->fetch_assoc()) {
+            $row['route'] = $BusRoutes->name($row['route_id']);
             $rows[] = $row;
         }
         return $rows;
