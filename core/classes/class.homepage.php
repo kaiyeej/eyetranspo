@@ -23,7 +23,7 @@ class Homepage extends Connection
     }
     
     public function total_buses(){
-        $result = $this->select('tbl_buses', 'count(bus_id)',);
+        $result = $this->select('tbl_buses', 'count(bus_id)');
         $row = $result->fetch_array();
         return $row[0];
     }
