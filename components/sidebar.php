@@ -13,8 +13,8 @@
             </a>
         </li>
         <li class="nav-item pt-3">
-            <a class="nav-link d-block" href="index.html">
-                <center style="font-weight: bold;color: #2e7d32;">EYETRANSPO
+            <a class="nav-link d-block" href="./">
+                <center style="font-weight: bold;color: #f57f17;">
                     <div class="small font-weight-light pt-1">CHMSU-Alijis</div>
                 </center>
             </a>
