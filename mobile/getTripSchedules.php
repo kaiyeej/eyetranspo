@@ -14,6 +14,7 @@ while ($row = $fetch->fetch_array()) {
     $response = array();
 
     $response["trip_id"] = $row['trip_id'];
+    $response["bus_id"] = $row['bus_id'];
     $response["bus_number"] = getBusNumber($row['bus_id']);
     $response["trip_schedule_id"] = $row['trip_schedule_id'];
     $response["date_departed"] = $row['date_departed'];

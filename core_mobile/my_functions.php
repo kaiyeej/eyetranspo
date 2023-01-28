@@ -35,3 +35,29 @@ function getBusRoute($bus_id)
 	}
 	return $bus_r;
 }
+function getBusDriverId($bus_id)
+{
+	global $mysqli_connect;
+
+	$fetch = $mysqli_connect->query("SELECT driver_id FROM tbl_buses WHERE bus_id='4'");
+	$row = $fetch->fetch_array();
+	if (empty($row[0])) {
+		$driver_id = 0;
+	} else {
+		$driver_id = $row[0];
+	}
+	return $driver_id;
+}
+function getDriverName($driver_id)
+{
+	global $mysqli_connect;
+
+	$fetch = $mysqli_connect->query("SELECT driver_fname, driver_mname, driver_lname, FROM tbl_drivers WHERE driver_id='$driver_id'");
+	$row = $fetch->fetch_array();
+	if (empty($row[0])) {
+		$data = 0;
+	} else {
+		$data = $row;
+	}
+	return $row;
+}
