@@ -40,7 +40,11 @@
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label>Heading</label>
-                                <input type="text" class="form-control input-item" name="input[headings]" id="headings" placeholder="Heading" maxlength="10" autocomplete="off" required>
+                                <select class="js-example-basic-single form-control input-item" style="width: 100%;" name="input[headings]" id="headings" required>
+                                    <option value="">Please Select:</option>
+                                    <option value="North">North</option>
+                                    <option value="South">South</option>
+                                </select>
                             </div>
                         </div>
                     </div>
