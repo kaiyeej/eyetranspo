@@ -4,24 +4,7 @@ class Transactions extends Connection
 {
     private $table = 'tbl_transactions';
     public $pk = 'transaction_id';
-    public $name = 'ref_number';
-
-    public function edit()
-    {
-        $primary_id = $this->inputs[$this->pk];
-        $is_exist = $this->select($this->table, $this->pk, "ref_number = '$this->name' AND $this->pk != '$primary_id'");
-        if ($is_exist->num_rows > 0) {
-            return 2;
-        } else {
-            $form = array(
-                $this->name     => $this->clean($this->inputs[$this->name]),
-                //'user_id'       => $this->inputs['user_id'],
-                'driver_id'     => $this->inputs['driver_id'],
-                'remarks'       => $this->inputs['remarks'],
-            );
-            return $this->update($this->table, $form, "$this->pk = '$primary_id'");
-        }
-    }
+    public $name = 'bus_id';
 
     public function cancel()
     {
@@ -37,12 +20,18 @@ class Transactions extends Connection
     {
         $rows = array();
         $Users = new Users();
+        $Buses = new Buses();
+        $Trips = new Trips();
         $param = isset($this->inputs['param']) ? $this->inputs['param'] : null;
         $rows = array();
+        $count =1;
         $result = $this->select($this->table, '*', $param);
         while ($row = $result->fetch_assoc()) {
-            $row['driver'] = $Users->getUser($row['driver_id']);
-            $row['user'] = $Users->getUser($row['user_id']);
+            $row['count'] = $count;
+            $row['bus'] = $Buses->name($row['bus_id']);
+            $row['user'] = $Users->fullname($row['user_id']);
+            $row['trip'] = $Trips->name($row['trip_id']);
+            $count++;
             $rows[] = $row;
         }
         return $rows;

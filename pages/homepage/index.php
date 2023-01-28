@@ -3,7 +3,7 @@ $Homepage = new Homepage();
 ?>
 <div class="content-wrapper pb-0">
   <div class="row">
-    <div class="col-sm-5 stretch-card grid-margin">
+    <div class="col-sm-4 stretch-card grid-margin">
       <div class="card">
         <div class="card-body">
           <div class="d-flex border-bottom mb-4 pb-2">
@@ -53,10 +53,67 @@ $Homepage = new Homepage();
         </div>
       </div>
     </div>
-    <div class="col-xl-7 stretch-card grid-margin">
+    <div class="col-xl-8 stretch-card grid-margin">
       <div class="card" style="padding-top:30px;">
-       <img src="assets/images/logo-banner.png">
+        <img src="assets/images/logo-banner.png">
+        <hr>
+        <div class="card-body">
+          <div class="table-responsive">
+            <h3 style="color: #607d8b;">On-Going Trips</h3>
+            <table id="dt_entries" class="table table-striped">
+              <thead class="">
+                <tr>
+                  <th>#</th>
+                  <th>Bus</th>
+                  <th>Schedule</th>
+                  <th>Heading</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
+<script type="text/javascript">
+  function getEntries() {
+    var param = "status='D'";
+    $("#dt_entries").DataTable().destroy();
+    $("#dt_entries").DataTable({
+      "processing": true,
+      "bInfo": false,
+      "paging": false,
+      "ajax": {
+        "url": "controllers/sql.php?c=Trips&q=show",
+        "dataSrc": "data",
+        "data": {
+          input: {
+            param: param
+          }
+        }
+      },
+      "columns": [{
+          "data": "count"
+        },
+        {
+          "data": "bus"
+        },
+        {
+          "data": "schedule"
+        },
+        {
+          "data": "headings"
+        },
+        {
+          "data": "date"
+        }
+      ]
+    });
+  }
+
+  $(document).ready(function() {
+    getEntries();
+  });
+</script>

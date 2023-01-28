@@ -39,11 +39,16 @@ class Trips extends Connection
         $Buses = new Buses();
         $param = isset($this->inputs['param']) ? $this->inputs['param'] : null;
         $rows = array();
+        $count = 1;
         $result = $this->select($this->table, '*', $param);
         while ($row = $result->fetch_assoc()) {
+            $row['count'] = $count;
             $row['bus'] = $Buses->name($row['bus_id']);
+            $row['date'] = date('M d h:i A', strtotime($row["date_departed"]))." - ".date('M d h:i A', strtotime($row["date_arrived"]));
             $row['schedule'] = $TripSchedule->name($row['trip_schedule_id']);
             $rows[] = $row;
+
+            $count++;
         }
         return $rows;
     }

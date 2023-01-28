@@ -47,6 +47,12 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="transactions">
+                <i class="mdi mdi-file-document-outline menu-icon"></i>
+                <span class="menu-title">Transactions</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="trips">
                 <i class="mdi mdi-road-variant menu-icon"></i>
                 <span class="menu-title">Trips</span>
