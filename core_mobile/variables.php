@@ -9,18 +9,18 @@
 // offline
 
 define("host", "localhost");
-define("username", "u981310152_et_root");
-define("password", "+4mC~tK4dyI");
-define("database", "u981310152_eyetranspo_db");
+define("username", "root");
+define("password", "");
+define("database", "eyetranspo_db");
 
 
 
 
 // online
 // define("host", "localhost");
-// define("username", "u981310152_trisakay_root1");
-// define("password", "yuhn~vjZ3B:");
-// define("database", "u981310152_trisakay_db");
+// define("username", "u981310152_et_root");
+// define("password", "+4mC~tK4dyI");
+// define("database", "u981310152_eyetranspo_db");
 /** Auth **/
 
 // define("table", "tbl_users");
