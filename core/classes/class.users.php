@@ -71,7 +71,7 @@ class Users extends Connection
         $result = $this->select($this->table, '*', $param);
         while ($row = $result->fetch_assoc()) {
             $row['user_fullname'] = $row['user_fname']." ".$row['user_mname']." ".$row['user_lname'];
-            $row['category'] = $row['user_category'] == "A" ? "Admin" : ($row['user_category'] == "U" ? "Passenger" : "Conductor");
+            $row['category'] = $row['user_category'] == "A" ? "Admin" : ($row['user_category'] == "C" ? "Conductor" : "Passenger" );
             $rows[] = $row;
         }
         return $rows;
