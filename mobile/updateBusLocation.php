@@ -13,9 +13,6 @@ $lat = $_REQUEST['latitude'];
 $long = $_REQUEST['longitude'];
 $location = $lat.','.$long;
 $response_array['array_data'] = array();
-
-
-
 $result = $mysqli_connect->query("UPDATE `tbl_buses` SET `location`='$location' WHERE  `bus_id`='$bus_id'");
 
 if ($result) {

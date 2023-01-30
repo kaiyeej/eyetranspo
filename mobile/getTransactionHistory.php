@@ -17,14 +17,15 @@ $fetch_users = $mysqli_connect->query("SELECT * FROM tbl_transactions WHERE (`st
 while ($data = $fetch_users->fetch_array()) {
     $response = array();
     $response['transaction_id'] = $data['transaction_id'];
-    $response['driver_name'] = getUserName($data['driver_id']);
-    $response['amount'] = number_format($data['amount'], 2);
+    $response['bus_name'] = getBusNumber($data['bus_id']);
+    $response['fare'] = number_format($data['fare'], 2);
     $response['status'] = $data['status'];
     $response['remarks'] = $data['remarks'];
-    $response['driver_id'] = $data['driver_id'];
+    $response['bus_id'] = $data['bus_id'];
     $response['date_added'] =  date('F j, Y', strtotime($data['date_added']));
-    $response['rating_status'] = checkDriverRating($data['transaction_id']);
-    $response['rating_remarks'] = getRatingRemarks($data['transaction_id']);
+    $response['driver_name'] = getDriverName($data['bus_id']);
+    $response['bus_route'] = getBusRoute($data['bus_id']);
+    
     array_push($response_array['array_data'], $response);
 }
 

@@ -32,6 +32,7 @@ if (isset($username) && isset($password)) {
             $response["user_fname"] = $data['user_fname'];
             $response["user_lname"] = $data['user_lname'];
             $response["contact_number"] = $data['user_contact_number'];
+            $response["category"] = $data['user_category'];
             $response["username"] = $data['username'];
             $response["user_id"] = $data['user_id'];
             $response["response"] = 1;
@@ -44,6 +45,7 @@ if (isset($username) && isset($password)) {
             $response["user_fname"] = $data['user_fname'];
             $response["user_lname"] = $data['user_lname'];
             $response["contact_number"] = $data['user_contact_number'];
+            $response["category"] = $data['user_category'];
             $response["username"] = $data['username'];
             $response["user_id"] = $data['user_id'];
             $response["response"] = 1;

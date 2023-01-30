@@ -16,7 +16,8 @@ $password = $_REQUEST['password'];
 $response_array['array_data'] = array();
 
 $response = array();
-$fetch_trans = $mysqli_connect->query("UPDATE `tbl_users` SET `user_fname`='$fname', `user_mname`='$mname', `user_lname`='$lname',`username`='$username',`password`=md5('$password') WHERE user_id='$user_id'");
+$fetch_trans = $mysqli_connect->query("UPDATE `tbl_users` SET `user_fname`='$fname', `user_mname`='$mname', `user_lname`='$l
+name',`username`='$username',`password`=md5('$password') WHERE user_id='$user_id'");
 
 if ($fetch_trans) {
     $response["response"] = 1;
