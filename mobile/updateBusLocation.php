@@ -8,7 +8,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 require_once '../core_mobile/config.php';
 
 
-$user_id = $_REQUEST['user_id']; // session
+$bus_id = $_REQUEST['user_id']; // session
 $lat = $_REQUEST['latitude'];
 $long = $_REQUEST['longitude'];
 $location = $lat.','.$long;
@@ -16,7 +16,7 @@ $response_array['array_data'] = array();
 
 
 
-$result = $mysqli_connect->query("UPDATE `tbl_users` SET `location`='$location' WHERE  `user_id`='$user_id'");
+$result = $mysqli_connect->query("UPDATE `tbl_buses` SET `location`='$location' WHERE  `bus_id`='$bus_id'");
 
 if ($result) {
     $response['response'] = 1;
