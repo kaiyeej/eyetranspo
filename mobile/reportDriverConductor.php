@@ -7,16 +7,12 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 
 require_once '../../core/config.php';
-$userd_id = $_REQUEST['user_id'];
-$fname = $_REQUEST['fname'];
-$mname = $_REQUEST['mname'];
-$lname = $_REQUEST['lname'];
-$username = $_REQUEST['username'];
-$password = $_REQUEST['password'];
+$bus_id = $_REQUEST['bus_id'];
+$remarks = $_REQUEST['remarks'];
 $response_array['array_data'] = array();
 
 $response = array();
-$fetch_trans = $mysqli_connect->query("UPDATE `tbl_users` SET `user_fname`='$fname', `user_mname`='$mname', `user_lname`='$lname',`username`='$username',`password`=md5('$password') WHERE user_id='$user_id'");
+$fetch_trans = $mysqli_connect->query("UPDATE `tbl_transactions` SET `remarks`='$remarks' WHERE bus_id='$bus_id'");
 
 if ($fetch_trans) {
     $response["response"] = 1;

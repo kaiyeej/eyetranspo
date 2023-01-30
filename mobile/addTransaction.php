@@ -6,14 +6,20 @@ header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 require_once '../core_mobile/config.php';
-
+$response_array['array_data'] = array();
 $bus_id = $_REQUEST['bus_id'];
 $user_id = $_REQUEST['user_id'];
 $transaction_id = $_REQUEST['transaction_id'];
+$fare = getTripFare($_REQUEST['transaction_id']);
 
-$response_array['array_data'] = array();
-$fetch = $mysqli_connect->query("SELECT * FROM tbl_trips where headings='$headings'");
+$response = array();
+$fetch = $mysqli_connect->query("INSERT INTO `tbl_transactions` (`bus_id`, `trip_id`, `user_id`, `fare`, `status`) VALUES ('$bus_id', '0', '$user_id', '$fare', 'P')");
+if ($fetch) {
+    $response["response"] = 1;
+} else {
+    $fetch["response"] = 0;
+}
 
 
-
+array_push($response_array['array_data'], $response);
 echo json_encode($response_array);

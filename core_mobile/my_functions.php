@@ -54,10 +54,18 @@ function getDriverName($driver_id)
 
 	$fetch = $mysqli_connect->query("SELECT driver_fname, driver_mname, driver_lname, FROM tbl_drivers WHERE driver_id='$driver_id'");
 	$row = $fetch->fetch_array();
+
+	return $row;
+}
+function getTripFare($trip_schedule_id){
+	global $mysqli_connect;
+
+	$fetch = $mysqli_connect->query("SELECT trip_schedule_fare FROM tbl_trip_schedule WHERE trip_schedule_id='$trip_schedule_id'");
+	$row = $fetch->fetch_array();
 	if (empty($row[0])) {
 		$data = 0;
 	} else {
-		$data = $row;
+		$data = $row[0];
 	}
-	return $row;
+	return $data;
 }
