@@ -33,8 +33,9 @@ if (isset($_SESSION["et_status"])) {
             <div class="col-lg-4 mx-auto">
               <div class="auth-form-light text-center p-5">
                 <div class="brand-logo">
-                  <img src="assets/images/logo-banner.png" style="width: 110%;">
+                  <img src="assets/images/logo-banner.png" style="width: 100%;">
                 </div>
+                <br>
                 <h4>Hello! let's get started</h4>
                 <h6 class="font-weight-light">Sign in to continue.</h6>
                 <form method="POST" id="frm_login" class="pt-3">
@@ -46,7 +47,7 @@ if (isset($_SESSION["et_status"])) {
 										placeholder="Password" name="input[password]" autocomplete="off">
                   </div>
                   <div class="mt-3">
-                    <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-semibold auth-form-btn" style="background: #e99340;border: #e99340;">SIGN IN</button>
+                    <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-semibold auth-form-btn">SIGN IN</button>
                   </div>
                   <!-- <div class="text-center mt-4 font-weight-light"> Don't have an account? <a href="register.html" class="text-primary">Create</a>
                   </div> -->

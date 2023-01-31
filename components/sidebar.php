@@ -14,7 +14,7 @@
         </li>
         <li class="nav-item pt-3">
             <a class="nav-link d-block" href="./">
-                <center style="font-weight: bold;color: #f57f17;">
+                <center style="font-weight: bold;color: #c82a2b;">
                     <div class="small font-weight-light pt-1">CHMSU-Alijis</div>
                 </center>
             </a>

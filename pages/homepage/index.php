@@ -54,8 +54,8 @@ $Homepage = new Homepage();
       </div>
     </div>
     <div class="col-xl-8 stretch-card grid-margin">
-      <div class="card" style="padding-top:30px;">
-        <img src="assets/images/logo-banner.png">
+      <div class="card" style="padding-top:10px;">
+        <center><img style="width: 80%;" src="assets/images/logo-banner.png"></center>
         <hr>
         <div class="card-body">
           <div class="table-responsive">
