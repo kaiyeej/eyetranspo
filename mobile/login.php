@@ -11,6 +11,7 @@ require_once '../core_mobile/config.php';
 $username = $_REQUEST['username'];
 $password = $_REQUEST['password'];
 $id_token = ""; //$_REQUEST['idtoken'];
+$location = $_REQUEST['location'];
 $response_array['array_data'] = array();
 if (isset($username) && isset($password)) {
     $fetch_users = $mysqli_connect->query("SELECT count(user_id) as ctr, user_id, user_category FROM tbl_users where username='$username' AND password=md5('$password')");
@@ -22,6 +23,7 @@ if (isset($username) && isset($password)) {
     // }
     $response = array();
     if ($count_users['ctr'] > 0) {
+        $mysqli_connect->query("UPDATE `tbl_users` SET `location`='$location' WHERE `user_id`='$count_users[user_id]'");
         if($count_users['user_category'] == 'U'){
           
 

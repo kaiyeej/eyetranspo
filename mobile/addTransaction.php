@@ -9,11 +9,11 @@ require_once '../core_mobile/config.php';
 $response_array['array_data'] = array();
 $bus_id = $_REQUEST['bus_id'];
 $user_id = $_REQUEST['user_id'];
-$transaction_id = $_REQUEST['transaction_id'];
-$fare = getTripFare($_REQUEST['transaction_id']);
+$trip_id = $_REQUEST['trip_id'];
+$fare = getTripFare($_REQUEST['trip_schedule_id']);
 
 $response = array();
-$fetch = $mysqli_connect->query("INSERT INTO `tbl_transactions` (`bus_id`, `trip_id`, `user_id`, `fare`, `status`) VALUES ('$bus_id', '0', '$user_id', '$fare', 'P')");
+$fetch = $mysqli_connect->query("INSERT INTO `tbl_transactions` (`bus_id`, `trip_id`, `user_id`, `fare`, `status`) VALUES ('$bus_id', '$trip_id', '$user_id', '$fare', 'P')");
 if ($fetch) {
     $response["response"] = 1;
 } else {
