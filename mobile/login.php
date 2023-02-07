@@ -10,51 +10,56 @@ require_once '../core_mobile/config.php';
 // //$data = json_decode(file_get_contents("php://input"));
 $username = $_REQUEST['username'];
 $password = $_REQUEST['password'];
-$id_token = ""; //$_REQUEST['idtoken'];
+$id_token = $_REQUEST['id_token'];
 $location = $_REQUEST['location'];
 $response_array['array_data'] = array();
 if (isset($username) && isset($password)) {
     $fetch_users = $mysqli_connect->query("SELECT count(user_id) as ctr, user_id, user_category FROM tbl_users where username='$username' AND password=md5('$password')");
     $count_users = $fetch_users->fetch_array();
-    // if ($id_token == "" || $id_token == null) {
-    //     $result_id_token = false;
-    // } else {
-    //     $result_id_token = $mysqli_connect->query("UPDATE `tbl_users` SET `id_token`='$id_token' WHERE `user_id`='$count_users[user_id]'");
-    // }
+    if ($id_token == "" || $id_token == null) {
+        $result_id_token = false;
+    } else {
+        $result_id_token = $mysqli_connect->query("UPDATE `tbl_users` SET `id_token`='$id_token' WHERE `user_id`='$count_users[user_id]'");
+    }
     $response = array();
     if ($count_users['ctr'] > 0) {
         $mysqli_connect->query("UPDATE `tbl_users` SET `location`='$location' WHERE `user_id`='$count_users[user_id]'");
-        if($count_users['user_category'] == 'U'){
-          
+        if ($count_users['user_category'] == 'U') {
+
 
             $getUser = $mysqli_connect->query("SELECT * FROM tbl_users WHERE user_id='$count_users[user_id]'");
             $data = $getUser->fetch_array();
-    
-            // if ($result_id_token) {
-            $response["user_fname"] = $data['user_fname'];
-            $response["user_lname"] = $data['user_lname'];
-            $response["contact_number"] = $data['user_contact_number'];
-            $response["category"] = $data['user_category'];
-            $response["username"] = $data['username'];
-            $response["user_id"] = $data['user_id'];
-            $response["response"] = 1;
-        }else if($count_users['user_category'] == 'C'){
+
+            if ($result_id_token) {
+                $response["user_fname"] = $data['user_fname'];
+                $response["user_lname"] = $data['user_lname'];
+                $response["contact_number"] = $data['user_contact_number'];
+                $response["category"] = $data['user_category'];
+                $response["username"] = $data['username'];
+                $response["user_id"] = $data['user_id'];
+                $response["response"] = 1;
+            } else {
+                $response["response"] = $id_token;
+            }
+        } else if ($count_users['user_category'] == 'C') {
 
             $getUser = $mysqli_connect->query("SELECT * FROM tbl_users WHERE user_id='$count_users[user_id]'");
             $data = $getUser->fetch_array();
-    
-            // if ($result_id_token) {
-            $response["user_fname"] = $data['user_fname'];
-            $response["user_lname"] = $data['user_lname'];
-            $response["contact_number"] = $data['user_contact_number'];
-            $response["category"] = $data['user_category'];
-            $response["username"] = $data['username'];
-            $response["user_id"] = $data['user_id'];
-            $response["response"] = 1;
-        }else{
+
+            if ($result_id_token) {
+                $response["user_fname"] = $data['user_fname'];
+                $response["user_lname"] = $data['user_lname'];
+                $response["contact_number"] = $data['user_contact_number'];
+                $response["category"] = $data['user_category'];
+                $response["username"] = $data['username'];
+                $response["user_id"] = $data['user_id'];
+                $response["response"] = 1;
+            } else {
+                $response["response"] = 0;
+            }
+        } else {
             $response["response"] = 0;
         }
-       
     } else {
         $response["response"] = 0;
     }

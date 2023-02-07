@@ -14,7 +14,11 @@ $contactNumber = $_REQUEST['contactNumber'];
 $username = $_REQUEST['username'];
 $password = $_REQUEST['password'];
 $date = getCurrentDate();
+$name = $_FILES['file']['name'];
+$type = $_FILES['file']['type'];
+$size = $_FILES['file']['size'];
 $response_array['array_data'] = array();
+
 if (isset($username) && isset($password)) {
 
 	$response = array();
@@ -22,42 +26,19 @@ if (isset($username) && isset($password)) {
 	$row = $fetch_rows->fetch_array();
 
 	if ($row['counter'] == 0) {
+		$img_name = $name . '.jpg';
+		$directory = "../assets/pwd_id_images/" . $name . '.jpg';
 
-		$sql = $mysqli_connect->query("INSERT INTO tbl_users (`user_fname`, `user_mname`, `user_lname`, `user_contact_number`, `user_category`, `username`, `password`, `date_added`) VALUES ('$fname','$mname','$lname','$contactNumber','U','$username',md5('$password'),'$date')");
+		// compressImage($_FILES['file']['tmp_name'], $directory, 50);
+
+		$sql = $mysqli_connect->query("INSERT INTO tbl_users (`user_fname`, `user_mname`, `user_lname`, `user_contact_number`,`user_img`, `user_category`, `username`, `password`, `date_added`) VALUES ('$fname','$mname','$lname','$contactNumber','$img_name','U','$username',md5('$password'),'$date')");
 
 		if ($sql) {
-
-			// date_default_timezone_set('Asia/Manila');
-			// $date = getCurrentDate();
-			// $time = date('H:i:s');
-			// $user_name = "Ginery";
-			// $messages = "hello world";
-			// $text = strval($messages . " | FROM VISITOR: " . $user_name);
-			// $shortcode = "8707";
-			// $access_token = "D3kL1sR67b0r5Kuqb1aueLvz4yruC_4E4j5HtN9dmmI";
-			// $address = '09955965031'; // phone number
-			// $clientCorrelator = "264801";
-			// $message = $text;
-
-
-			// $curl = curl_init();
-			// curl_setopt_array($curl, array(
-			// 	CURLOPT_URL => "https://devapi.globelabs.com.ph/smsmessaging/v1/outbound/" . $shortcode . "/requests?access_token=" . $access_token,
-			// 	CURLOPT_RETURNTRANSFER => true,
-			// 	CURLOPT_ENCODING => "",
-			// 	CURLOPT_MAXREDIRS => 10,
-			// 	CURLOPT_TIMEOUT => 30,
-			// 	CURLOPT_SSL_VERIFYPEER => false,
-			// 	CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-			// 	CURLOPT_CUSTOMREQUEST => "POST",
-			// 	CURLOPT_POSTFIELDS => "{\"outboundSMSMessageRequest\": { \"clientCorrelator\": \"" . $clientCorrelator . "\", \"senderAddress\": \"" . $shortcode . "\", \"outboundSMSTextMessage\": {\"message\": \"" . $message . "\"}, \"address\": \"" . $address . "\" } }",
-			// 	CURLOPT_HTTPHEADER => array(
-			// 		"Content-Type: application/json"
-			// 	),
-			// ));
-			// $response = curl_exec($curl);
-			// $err = curl_error($curl);
-			// curl_close($curl);
+			if (move_uploaded_file($_FILES["file"]["tmp_name"], $directory)) {
+				$response["res"] =  $mysqli_connect->insert_id;
+			} else {
+				$response["res"] = 0;
+			}
 			$response["res"] =  $mysqli_connect->insert_id;
 		} else {
 			$response["res"] = 0;
