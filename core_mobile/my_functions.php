@@ -57,7 +57,8 @@ function getDriverName($driver_id)
 
 	return $row;
 }
-function getTripFare($trip_schedule_id){
+function getTripFare($trip_schedule_id)
+{
 	global $mysqli_connect;
 
 	$fetch = $mysqli_connect->query("SELECT trip_schedule_fare FROM tbl_trip_schedule WHERE trip_schedule_id='$trip_schedule_id'");
@@ -69,7 +70,8 @@ function getTripFare($trip_schedule_id){
 	}
 	return $data;
 }
-function getDriverDetailsUsingBusId($bus_id){
+function getDriverDetailsUsingBusId($bus_id)
+{
 	global $mysqli_connect;
 
 	$fetch = $mysqli_connect->query("SELECT * FROM tbl_buses AS b, tbl_drivers AS d WHERE b.driver_id=d.driver_id AND b.bus_id='$bus_id'");
@@ -77,9 +79,23 @@ function getDriverDetailsUsingBusId($bus_id){
 
 	return $row;
 }
-function getTransactionDetails($trip_schedule_id){
+function getTransactionDetails($trip_schedule_id)
+{
 	global $mysqli_connect;
 	$fetch = $mysqli_connect->query("SELECT * FROM tbl_trip_schedule WHERE trip_schedule_id='$trip_schedule_id'");
 	$row = $fetch->fetch_array();
 	return $trip_schedule_id;
+}
+function getUserLocation($user_id)
+{
+	global $mysqli_connect;
+
+	$fetch = $mysqli_connect->query("SELECT `location` FROM tbl_users WHERE user_id='$user_id'");
+	$row = $fetch->fetch_array();
+	if (empty($row[0])) {
+		$location = 0;
+	} else {
+		$location = $row[0];
+	}
+	return $location;
 }

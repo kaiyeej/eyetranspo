@@ -21,6 +21,7 @@ while ($row = $fetch->fetch_array()) {
     $response["date_arrived"] = $row['date_arrived'];
     $response["headings"] = $row['headings'];
     $response["bus_route"] = getBusRoute($row['bus_id']);
+    $response["conductor_id"] = $row['user_id'];
 
     array_push($response_array['array_data'], $response);
 }
