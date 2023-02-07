@@ -6,7 +6,7 @@ header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 
-require_once '../../core/config.php';
+require_once '../core_mobile/config.php';
 $bus_id = $_REQUEST['bus_id'];
 $headings = $_REQUEST['headings'];
 $response_array['array_data'] = array();
