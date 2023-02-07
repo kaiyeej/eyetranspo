@@ -11,6 +11,7 @@ class Trips extends Connection
         $form = array(
             $this->name         => $this->clean($this->inputs[$this->name]),
             'trip_schedule_id'  => $this->inputs['trip_schedule_id'],
+            'user_id'           => $this->inputs['user_id'],
             'date_departed'     => $this->inputs['date_departed'],
             'date_arrived'      => $this->inputs['date_arrived'],
             'headings'          => $this->inputs['headings']
@@ -24,6 +25,7 @@ class Trips extends Connection
         $form = array(
             $this->name         => $this->clean($this->inputs[$this->name]),
             'trip_schedule_id'  => $this->inputs['trip_schedule_id'],
+            'user_id'           => $this->inputs['user_id'],
             'date_departed'     => $this->inputs['date_departed'],
             'date_arrived'      => $this->inputs['date_arrived'],
             'headings'          => $this->inputs['headings']
@@ -36,6 +38,7 @@ class Trips extends Connection
     {
         $rows = array();
         $TripSchedule = new TripSchedule();
+        $Users = new Users();
         $Buses = new Buses();
         $param = isset($this->inputs['param']) ? $this->inputs['param'] : null;
         $rows = array();
@@ -44,6 +47,7 @@ class Trips extends Connection
         while ($row = $result->fetch_assoc()) {
             $row['count'] = $count;
             $row['bus'] = $Buses->name($row['bus_id']);
+            $row['conductor'] = $row['user_id'] == 0 ? "---" : $Users->fullname($row['user_id']);
             $row['date'] = date('M d h:i A', strtotime($row["date_departed"]))." - ".date('M d h:i A', strtotime($row["date_arrived"]));
             $row['schedule'] = $TripSchedule->name($row['trip_schedule_id']);
             $rows[] = $row;

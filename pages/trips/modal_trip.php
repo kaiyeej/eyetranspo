@@ -27,6 +27,14 @@
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
+                                <label>Conductor</label>
+                                <select class="js-example-basic-single form-control input-item" style="width: 100%;" name="input[user_id]" id="user_id" required>
+                                    <option value="">Please Select:</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
                                 <label>Date Departed</label>
                                 <input type="datetime-local" class="form-control input-item" name="input[date_departed]" id="date_departed"  autocomplete="off" required>
                             </div>

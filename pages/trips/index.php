@@ -20,6 +20,7 @@
                                 <th></th>
                                 <th>Bus</th>
                                 <th>Schedule</th>
+                                <th>Conductor</th>
                                 <th>Headings</th>
                                 <th>Status</th>
                                 <th>Date Departed</th>
@@ -121,6 +122,9 @@
                     "data": "schedule"
                 },
                 {
+                    "data": "conductor"
+                },
+                {
                     "data": "headings"
                 },
                 {
@@ -145,5 +149,6 @@
         getEntries();
         getSelectOption('Buses', 'bus_id', 'bus_number');
         getSelectOption('TripSchedule', 'trip_schedule_id', 'trip_schedule_time');
+        getSelectOption('Users', 'user_id', 'user_fullname', "user_category = 'C'");
     });
 </script>
