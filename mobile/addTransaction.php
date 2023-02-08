@@ -10,10 +10,11 @@ $response_array['array_data'] = array();
 $bus_id = $_REQUEST['bus_id'];
 $user_id = $_REQUEST['user_id'];
 $trip_id = $_REQUEST['trip_id'];
+$destination = $_REQUEST['destination'];
 $fare = getTripFare($_REQUEST['trip_schedule_id']);
 
 $response = array();
-$fetch = $mysqli_connect->query("INSERT INTO `tbl_transactions` (`bus_id`, `trip_id`, `user_id`, `fare`, `status`) VALUES ('$bus_id', '$trip_id', '$user_id', '$fare', 'P')");
+$fetch = $mysqli_connect->query("INSERT INTO `tbl_transactions` (`bus_id`, `trip_id`, `user_id`, `fare`, `status`, `destination`) VALUES ('$bus_id', '$trip_id', '$user_id', '$fare', 'P','$destination')");
 if ($fetch) {
     $response["response"] = 1;
 } else {

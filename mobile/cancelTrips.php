@@ -8,11 +8,10 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 require_once '../core_mobile/config.php';
 $trip_id = $_REQUEST['trip_id'];
-$remarks = $_REQUEST['report'];
 $response_array['array_data'] = array();
 
 $response = array();
-$fetch_trans = $mysqli_connect->query("UPDATE `tbl_transactions` SET `remarks`='$remarks' WHERE trip_id='$trip_id' AND `status`='P' OR `status`='D' ");
+$fetch_trans = $mysqli_connect->query("UPDATE `tbl_transactions` SET `status`='C' WHERE trip_id='$trip_id' AND `status`='P'");
 
 if ($fetch_trans) {
     $response["response"] = 1;

@@ -15,11 +15,14 @@ while ($row = $fetch->fetch_array()) {
 
     $response["trip_id"] = $row['trip_id'];
     $response["bus_id"] = $row['bus_id'];
+    $response["bus_number"] = getBusNumber($row['bus_id']);
     $response["driver_name"] = getDriverDetailsUsingBusId($row['bus_id'])['driver_fname'] . " " . getDriverDetailsUsingBusId($row['bus_id'])['driver_lname'];
     $response['bus_route'] = getBusRoute($row['bus_id']);
     $response['date_departed'] =  date('M j, Y h:iA', strtotime($row['date_departed']));
     $response['date_arrived'] =  date('M j, Y h:iA', strtotime($row['date_arrived']));
     $response['bus_location'] = getUserLocation($row['user_id']);
+    $response['conductor_id'] = $row['user_id'];
+    $response['destination'] = getUserDestination(getTransactionDetails($row['trip_id'])['user_id']);
     array_push($response_array['array_data'], $response);
 }
 echo json_encode($response_array);
