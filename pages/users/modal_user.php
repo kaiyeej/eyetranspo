@@ -69,8 +69,9 @@
                             <div id="div_password" class="form-group">
                                 <label>Password</label>
                                 <div>
-                                    <input type="text" class="form-control input-item" name="input[password]" autocomplete="off" id="password" placeholder="Password" required>
+                                    <input type="text" class="form-control input-item" name="input[password]" autocomplete="off" id="password" onkeyup="checkPasswordStrength();"  placeholder="Password" required>
                                 </div>
+                                <div id="password-strength-status"></div>
                             </div>
                         </div>
                     </div>

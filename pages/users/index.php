@@ -1,3 +1,22 @@
+<style>
+#password-strength-status {
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+.medium-password {
+    background-color: #fd0;
+}
+
+.weak-password {
+    background-color: #FBE1E1;
+}
+
+.strong-password {
+    background-color: #D5F9D5;
+}
+</style>
 <div class="content-wrapper">
     <br>
     <div class="page-header flex-wrap">
@@ -31,50 +50,76 @@
     </div>
 </div>
 <?php include "modal_user.php"; ?>
-<script type="text/javascript">  
+<script type="text/javascript">
+    var pass_status = 0;
+
     function addUser() {
         addModal();
         $("#div_password").show();
+        pass_status = 0;
     }
 
     function getUserDetails(id) {
         $("#div_password").hide();
         getEntryDetails(id);
+        pass_status = 1;
+    }
+
+    function checkPasswordStrength() {
+        var number = /([0-9])/;
+        var alphabets = /([a-zA-Z])/;
+        var special_characters = /([~,!,@,#,$,%,^,&,*,-,_,+,=,?,>,<])/;
+        var password = $('#password').val().trim();
+        if (password.length < 6) {
+            $('#password-strength-status').removeClass();
+            $('#password-strength-status').addClass('weak-password');
+            $('#password-strength-status').html("Weak (should be atleast 6 characters.)");
+        } else {
+            if (password.match(number) && password.match(alphabets) && password.match(special_characters)) {
+                $('#password-strength-status').removeClass();
+                $('#password-strength-status').addClass('strong-password');
+                $('#password-strength-status').html("Strong");
+                pass_status = 1;
+            } else {
+                $('#password-strength-status').removeClass();
+                $('#password-strength-status').addClass('medium-password');
+                $('#password-strength-status').html("Medium (should include alphabets, numbers and special characters.)");
+            }
+        }
     }
 
 
-    function getEntries() {
-        $("#dt_entries").DataTable().destroy();
-        $("#dt_entries").DataTable({
-            "processing": true,
-            "ajax": {
-                "url": "controllers/sql.php?c=" + route_settings.class_name + "&q=show",
-                "dataSrc": "data"
-            },
-            "columns": [
-                {
-                    "mRender": function(data, type, row) {
-                        return "<center><button class='btn btn-sm btn-danger' onclick='deleteEntry(" + row.user_id + ")'><span class='mdi mdi-delete'></span></button><button class='btn btn-sm btn-info' onclick='getUserDetails(" + row.user_id + ")'><span class='mdi mdi-lead-pencil'></span></button></center>";
+        function getEntries() {
+            $("#dt_entries").DataTable().destroy();
+            $("#dt_entries").DataTable({
+                "processing": true,
+                "ajax": {
+                    "url": "controllers/sql.php?c=" + route_settings.class_name + "&q=show",
+                    "dataSrc": "data"
+                },
+                "columns": [{
+                        "mRender": function(data, type, row) {
+                            return "<center><button class='btn btn-sm btn-danger' onclick='deleteEntry(" + row.user_id + ")'><span class='mdi mdi-delete'></span></button><button class='btn btn-sm btn-info' onclick='getUserDetails(" + row.user_id + ")'><span class='mdi mdi-lead-pencil'></span></button></center>";
+                        }
+                    },
+                    {
+                        "data": "user_fullname"
+                    },
+                    {
+                        "data": "category"
+                    },
+                    {
+                        "data": "username"
+                    },
+                    {
+                        "data": "date_added"
                     }
-                },
-                {
-                    "data": "user_fullname"
-                },
-                {
-                    "data": "category"
-                },
-                {
-                    "data": "username"
-                },
-                {
-                    "data": "date_added"
-                }
-            ]
+                ]
+            });
+        }
+
+        $(document).ready(function() {
+            getEntries();
+
         });
-    }
-    
-    $(document).ready(function() {
-        getEntries();
-        
-    });
 </script>

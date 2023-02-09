@@ -2,95 +2,97 @@
 include 'core/config.php';
 
 if (!isset($_SESSION["et_status"])) {
- header("location:./login.php");
+  header("location:./login.php");
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>EyeTranspo</title>
-    <!-- plugins:css -->
-    <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="assets/vendors/flag-icon-css/css/flag-icon.min.css">
-    <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
-    <link rel="stylesheet" href="assets/vendors/select2/select2.min.css">
-    <link rel="stylesheet" href="assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
-    <!-- endinject -->
-    <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="assets/vendors/jquery-bar-rating/css-stars.css" />
-    <link rel="stylesheet" href="assets/vendors/font-awesome/css/font-awesome.min.css" />
-    <link rel="stylesheet" type="text/css" href="assets/vendors/datatable/datatables.min.css"/>
-		<link rel="stylesheet" href="assets/sweetalert/sweetalert.css">
-    <!-- plugins:js -->
-    <script src="assets/vendors/js/vendor.bundle.base.js"></script>
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <!-- endinject -->
-    <!-- Layout styles -->
-    <link rel="stylesheet" href="assets/css/demo_1/style.css" />
-    <!-- End layout styles -->
-    <link rel="shortcut icon" href="assets/images/logo.png" />
-  </head>
-  <body>
-    <div class="container-scroller">
-      
-      <!-- partial:partials/_sidebar.html -->
-      <?php include "components/sidebar.php"; ?>
-     
-      <!-- partial -->
-      <div class="container-fluid page-body-wrapper">
-        <!-- partial:partials/_navbar.html -->
-        <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-          <div class="navbar-menu-wrapper d-flex align-items-stretch" style="background: #2e47c8;">
-            <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-              <span class="mdi mdi-chevron-double-left"></span> 
-            </button>
-            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-              <a class="navbar-brand brand-logo-mini" href="./"><img src="assets/images/logo-mini.svg" alt="logo" /></a>
-            </div>
-            <ul class="navbar-nav">
-              
-            </ul>
-            <ul class="navbar-nav navbar-nav-right">
-              
-              </li>
-              <li class="nav-item nav-logout d-none d-lg-block">
-                <a class="nav-link" href="#" onclick="logout()">
-                  <i class="mdi mdi-logout"></i> Log-out
-                </a>
-              </li>
-            </ul>
-            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-              <span class="mdi mdi-menu"></span>
-            </button>
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>EyeTranspo</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="assets/vendors/flag-icon-css/css/flag-icon.min.css">
+  <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="assets/vendors/select2/select2.min.css">
+  <link rel="stylesheet" href="assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <link rel="stylesheet" href="assets/vendors/jquery-bar-rating/css-stars.css" />
+  <link rel="stylesheet" href="assets/vendors/font-awesome/css/font-awesome.min.css" />
+  <link rel="stylesheet" type="text/css" href="assets/vendors/datatable/datatables.min.css" />
+  <link rel="stylesheet" href="assets/sweetalert/sweetalert.css">
+  <!-- plugins:js -->
+  <script src="assets/vendors/js/vendor.bundle.base.js"></script>
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <!-- endinject -->
+  <!-- Layout styles -->
+  <link rel="stylesheet" href="assets/css/demo_1/style.css" />
+  <!-- End layout styles -->
+  <link rel="shortcut icon" href="assets/images/logo.png" />
+</head>
+
+<body>
+  <div class="container-scroller">
+
+    <!-- partial:partials/_sidebar.html -->
+    <?php include "components/sidebar.php"; ?>
+
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_navbar.html -->
+      <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+        <div class="navbar-menu-wrapper d-flex align-items-stretch" style="background: #2e47c8;">
+          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+            <span class="mdi mdi-chevron-double-left"></span>
+          </button>
+          <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+            <a class="navbar-brand brand-logo-mini" href="./"><img src="assets/images/logo-mini.svg" alt="logo" /></a>
           </div>
-        </nav>
-        <!-- partial -->
-        <div class="main-panel">
-          <?php require 'routes/routes.php'; ?>
-        
-          <!-- content-wrapper ends -->
-          <!-- partial:partials/_footer.html -->
-          <footer class="footer">
-            <div class="d-sm-flex justify-content-center justify-content-sm-between">
-              <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © <?= date("Y"); ?> 
-                EyeTranspo. All rights reserved.</span>
-              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Carlos Hilado Memorial State University</span>
-            </div>
-          </footer>
-          <!-- partial -->
+          <ul class="navbar-nav">
+
+          </ul>
+          <ul class="navbar-nav navbar-nav-right">
+
+            </li>
+            <li class="nav-item nav-logout d-none d-lg-block">
+              <a class="nav-link" href="#" onclick="logout()">
+                <i class="mdi mdi-logout"></i> Log-out
+              </a>
+            </li>
+          </ul>
+          <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+            <span class="mdi mdi-menu"></span>
+          </button>
         </div>
+      </nav>
+      <!-- partial -->
+      <div class="main-panel">
+        <?php require 'routes/routes.php'; ?>
 
-        <!-- main-panel ends -->
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © <?= date("Y"); ?>
+              EyeTranspo. All rights reserved.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">LC Star Transport Cooperative</span>
+          </div>
+        </footer>
+        <!-- partial -->
       </div>
-      <!-- page-body-wrapper ends -->
-    </div>
 
-  
-    <script type='text/javascript'>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+
+
+  <script type='text/javascript'>
     <?php
     echo "var route_settings = " . $route_settings . ";\n";
     ?>
@@ -98,9 +100,9 @@ if (!isset($_SESSION["et_status"])) {
   <script type="text/javascript">
     var modal_detail_status = 0;
     $(document).ready(function() {
-        $('.js-example-basic-single').select2({
-            dropdownParent: $('#modalEntry')
-        });
+      $('.js-example-basic-single').select2({
+        dropdownParent: $('#modalEntry')
+      });
     });
 
     function logout() {
@@ -184,7 +186,7 @@ if (!isset($_SESSION["et_status"])) {
       document.getElementById("frm_submit").reset();
 
       $('.js-example-basic-single').select2({
-          dropdownParent: $('#modalEntry')
+        dropdownParent: $('#modalEntry')
       });
 
       var element = document.getElementById('reference_code');
@@ -199,47 +201,56 @@ if (!isset($_SESSION["et_status"])) {
     $("#frm_submit").submit(function(e) {
       e.preventDefault();
 
-      $("#btn_submit").prop('disabled', true);
-      $("#btn_submit").html("<span class='fa fa-spinner fa-spin'></span> Submitting ...");
 
-      var hidden_id = $("#hidden_id").val();
-      var q = hidden_id > 0 ? "edit" : "add";
-      $.ajax({
-        type: "POST",
-        url: "controllers/sql.php?c=" + route_settings.class_name + "&q=" + q,
-        data: new FormData(this),
-        contentType: false,
-        cache: false,
-        processData: false,
-        success: function(data) {
-          getEntries();
-          
-          var json = JSON.parse(data);
-          if (route_settings.has_detail == 1) {
-            if (json.data > 0) {
-              $("#modalEntry").modal('hide')
-              hidden_id > 0 ? success_update() : success_add();
-              hidden_id > 0 ? $("#modalEntry2").modal('hide') : '';
-              hidden_id > 0 ? getEntryDetails2(hidden_id) : getEntryDetails2(json.data);
-            } else if (json.data == -2) {
-              entry_already_exists();
+      if (route_settings.class_name == "Users" && pass_status == 0) {
+
+        swal("Cannot proceed!", "Invalid password!", "warning")
+
+      } else {
+
+
+        $("#btn_submit").prop('disabled', true);
+        $("#btn_submit").html("<span class='fa fa-spinner fa-spin'></span> Submitting ...");
+
+        var hidden_id = $("#hidden_id").val();
+        var q = hidden_id > 0 ? "edit" : "add";
+        $.ajax({
+          type: "POST",
+          url: "controllers/sql.php?c=" + route_settings.class_name + "&q=" + q,
+          data: new FormData(this),
+          contentType: false,
+          cache: false,
+          processData: false,
+          success: function(data) {
+            getEntries();
+
+            var json = JSON.parse(data);
+            if (route_settings.has_detail == 1) {
+              if (json.data > 0) {
+                $("#modalEntry").modal('hide')
+                hidden_id > 0 ? success_update() : success_add();
+                hidden_id > 0 ? $("#modalEntry2").modal('hide') : '';
+                hidden_id > 0 ? getEntryDetails2(hidden_id) : getEntryDetails2(json.data);
+              } else if (json.data == -2) {
+                entry_already_exists();
+              } else {
+                failed_query(json);
+              }
             } else {
-              failed_query(json);
+              if (json.data == 1) {
+                hidden_id > 0 ? success_update() : success_add();
+                $("#modalEntry").modal('hide');
+              } else if (json.data == 2) {
+                entry_already_exists();
+              } else {
+                failed_query(json);
+              }
             }
-          } else {
-            if (json.data == 1) {
-              hidden_id > 0 ? success_update() : success_add();
-              $("#modalEntry").modal('hide');
-            } else if (json.data == 2) {
-              entry_already_exists();
-            } else {
-              failed_query(json);
-            }
+            $("#btn_submit").prop('disabled', false);
+            $("#btn_submit").html("<span class='fa fa-check-circle'></span> Submit");
           }
-          $("#btn_submit").prop('disabled', false);
-          $("#btn_submit").html("<span class='fa fa-check-circle'></span> Submit");
-        }
-      });
+        });
+      }
     });
 
     function getEntryDetails(id, is_det = 0) {
@@ -256,16 +267,16 @@ if (!isset($_SESSION["et_status"])) {
           const json = jsonParse.data;
 
           $("#hidden_id").val(id);
-          
+
 
           $('.input-item').map(function() {
             //console.log(this.id);
             const id_name = this.id;
             this.value = json[id_name];
-            $("#"+id_name).val(json[id_name]).trigger('change');
+            $("#" + id_name).val(json[id_name]).trigger('change');
           });
 
-          
+
 
           $("#modalLabel").html("<i class='flaticon-edit'></i> Update Entry");
           $("#modalEntry").modal('show');
@@ -518,7 +529,7 @@ if (!isset($_SESSION["et_status"])) {
     }
     // END MODULE
 
-    function getSelectOption(class_name, primary_id, label, param = '', attributes = [], pre_value='', pre_label = 'Please Select') {
+    function getSelectOption(class_name, primary_id, label, param = '', attributes = [], pre_value = '', pre_label = 'Please Select') {
       $.ajax({
         type: "POST",
         url: "controllers/sql.php?c=" + class_name + "&q=show",
@@ -529,7 +540,7 @@ if (!isset($_SESSION["et_status"])) {
         },
         success: function(data) {
           var json = JSON.parse(data);
-          if(pre_value != "remove"){
+          if (pre_value != "remove") {
             $("#" + primary_id).html("<option value='" + pre_value + "'> &mdash; " + pre_label + " &mdash; </option>");
           }
 
@@ -574,33 +585,34 @@ if (!isset($_SESSION["et_status"])) {
 
 
 
-    <!-- container-scroller -->
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <script src="assets/vendors/select2/select2.min.js"></script>
-		<script src="assets/sweetalert/sweetalert.js"></script>
-    <script src="assets/vendors/jquery-bar-rating/jquery.barrating.min.js"></script>
-    <script type="text/javascript" src="assets/vendors/datatable/datatables.min.js"></script>
-    <script src="assets/vendors/chart.js/Chart.min.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.resize.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.categories.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.fillbetween.js"></script>
-    <script src="assets/vendors/flot/jquery.flot.stack.js"></script>
-    <script src="assets/js/jquery.cookie.js" type="text/javascript"></script>
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
-    <script src="assets/js/off-canvas.js"></script>
-    <script src="assets/js/hoverable-collapse.js"></script>
-    <script src="assets/js/misc.js"></script>
-    <script src="assets/js/settings.js"></script>
-    <script src="assets/js/todolist.js"></script>
-    <script src="assets/js/select2.js"></script>
-    <!-- endinject -->
-    <!-- Custom js for this page -->
-    <script src="assets/js/dashboard.js"></script>
-    <!-- End custom js for this page -->
+  <!-- container-scroller -->
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <script src="assets/vendors/select2/select2.min.js"></script>
+  <script src="assets/sweetalert/sweetalert.js"></script>
+  <script src="assets/vendors/jquery-bar-rating/jquery.barrating.min.js"></script>
+  <script type="text/javascript" src="assets/vendors/datatable/datatables.min.js"></script>
+  <script src="assets/vendors/chart.js/Chart.min.js"></script>
+  <script src="assets/vendors/flot/jquery.flot.js"></script>
+  <script src="assets/vendors/flot/jquery.flot.resize.js"></script>
+  <script src="assets/vendors/flot/jquery.flot.categories.js"></script>
+  <script src="assets/vendors/flot/jquery.flot.fillbetween.js"></script>
+  <script src="assets/vendors/flot/jquery.flot.stack.js"></script>
+  <script src="assets/js/jquery.cookie.js" type="text/javascript"></script>
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="assets/js/off-canvas.js"></script>
+  <script src="assets/js/hoverable-collapse.js"></script>
+  <script src="assets/js/misc.js"></script>
+  <script src="assets/js/settings.js"></script>
+  <script src="assets/js/todolist.js"></script>
+  <script src="assets/js/select2.js"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page -->
+  <script src="assets/js/dashboard.js"></script>
+  <!-- End custom js for this page -->
 
-  
-  </body>
+
+</body>
+
 </html>

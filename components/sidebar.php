@@ -1,3 +1,8 @@
+<?php
+
+$Users = new Users();
+
+?>
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
         <li class="nav-item nav-profile border-bottom">
@@ -7,15 +12,15 @@
                     <!--change to offline or busy as needed-->
                 </div>
                 <div class="nav-profile-text d-flex ms-0 mb-3 flex-column">
-                    <span class="font-weight-semibold mb-1 mt-2 text-center">Juan Dela Cruz</span>
-                    <span class="text-secondary icon-sm text-center">Admin</span>
+                    <span class="font-weight-semibold mb-1 mt-2 text-center"><?= $Users->fullname($_SESSION['et_user_id']); ?></span>
+                    <span class="text-secondary icon-sm text-center"><?= $Users->category($_SESSION['et_user_id']); ?></span>
                 </div>
             </a>
         </li>
         <li class="nav-item pt-3">
             <a class="nav-link d-block" href="./">
                 <center style="font-weight: bold;color: #c82a2b;">
-                    <div class="small font-weight-light pt-1">CHMSU-Alijis</div>
+                    <div class="small font-weight-light pt-1">LC Star Transport Cooperative</div>
                 </center>
             </a>
         </li>
@@ -63,6 +68,21 @@
                 <i class="mdi mdi-calendar-clock menu-icon"></i>
                 <span class="menu-title">Trip Schedule</span>
             </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#sidebar-layouts" aria-expanded="false" aria-controls="sidebar-layouts">
+                <i class="mdi mdi-playlist-play menu-icon"></i>
+                <span class="menu-title">Reports</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="sidebar-layouts">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="bus-history">Bus History</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="pages/layout/sidebar-hidden.html">Daily VIP Passengers</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="pages/layout/sidebar-collapsed.html">Passenger Complaints</a></li>
+                </ul>
+            </div>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="users">
