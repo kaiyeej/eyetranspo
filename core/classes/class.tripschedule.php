@@ -59,9 +59,10 @@ class TripSchedule extends Connection
 
     public function name($primary_id)
     {
-        $result = $this->select($this->table, $this->name, "$this->pk = '$primary_id'");
+        $BusRoutes = new BusRoutes();
+        $result = $this->select($this->table, "$this->name, route_id", "$this->pk = '$primary_id'");
         $row = $result->fetch_assoc();
-        return $row[$this->name];
+        return "<i>".$BusRoutes->name($row['route_id'])."</i> - ".$row[$this->name];
     }
 
     public function delete_entry()

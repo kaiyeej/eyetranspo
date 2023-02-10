@@ -45,13 +45,13 @@
                                 <input type="datetime-local" class="form-control input-item" name="input[date_arrived]" id="date_arrived" autocomplete="off" required>
                             </div>
                         </div>
-                        <div class="col-lg-12">
+                        <div class="col-lg-12" style="display: none;">
                             <div class="form-group">
                                 <label>Heading</label>
-                                <select class="js-example-basic-single form-control input-item" style="width: 100%;" name="input[headings]" id="headings" required>
+                                <select class="js-example-basic-single form-control input-item" style="width: 100%;" name="input[headings]" id="headings">
                                     <option value="">Please Select:</option>
-                                    <option value="North">North</option>
-                                    <option value="South">South</option>
+                                    <option value="TO BACOLOD">TO BACOLOD</option>
+                                    <option value="TO LA CASTELLANA">TO LA CASTELLANA</option>
                                 </select>
                             </div>
                         </div>

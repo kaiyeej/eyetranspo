@@ -21,7 +21,6 @@
                                 <th>Bus</th>
                                 <th>Schedule</th>
                                 <th>Conductor</th>
-                                <th>Headings</th>
                                 <th>Status</th>
                                 <th>Date Departed</th>
                                 <th>Date Arrived</th>
@@ -124,9 +123,9 @@
                 {
                     "data": "conductor"
                 },
-                {
-                    "data": "headings"
-                },
+                // {
+                //     "data": "headings"
+                // },
                 {
                     "mRender": function(data, type, row) {
                         return row.status == "A" ? "<strong style='color:green;'>Arrived</strong>" : row.status == "C" ? "<strong style='color:#f44336;'>Cancel</strong>" : row.status == "D" ? "<strong style='color:#ff9800;'>Departed</strong>" : "---" ;

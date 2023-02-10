@@ -46,12 +46,6 @@ $Users = new Users();
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="bus-routes">
-                <i class="mdi mdi-routes menu-icon"></i>
-                <span class="menu-title">Routes</span>
-            </a>
-        </li>
-        <li class="nav-item">
             <a class="nav-link" href="transactions">
                 <i class="mdi mdi-file-document-outline menu-icon"></i>
                 <span class="menu-title">Transactions</span>
@@ -79,8 +73,8 @@ $Users = new Users();
             <div class="collapse" id="sidebar-layouts">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="bus-history">Bus History</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/layout/sidebar-hidden.html">Daily VIP Passengers</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/layout/sidebar-collapsed.html">Passenger Complaints</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="passenger-vip">Daily VIP Passengers</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="passenger-complaints">Passenger Complaints</a></li>
                 </ul>
             </div>
         </li>

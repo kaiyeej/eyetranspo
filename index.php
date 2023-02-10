@@ -105,6 +105,17 @@ if (!isset($_SESSION["et_status"])) {
       });
     });
 
+    function print_report(container) {
+      var printContents = document.getElementById(container).innerHTML;
+      var originalContents = document.body.innerHTML;
+      document.body.innerHTML = printContents;
+      window.print();
+      
+      document.body.innerHTML = originalContents;
+
+      location.reload();
+    }
+
     function logout() {
       var confirm_export = confirm("You are about to logout.");
       if (confirm_export == true) {

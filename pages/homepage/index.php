@@ -66,7 +66,6 @@ $Homepage = new Homepage();
                   <th>#</th>
                   <th>Bus</th>
                   <th>Schedule</th>
-                  <th>Heading</th>
                   <th>Date</th>
                 </tr>
               </thead>
@@ -102,9 +101,6 @@ $Homepage = new Homepage();
         },
         {
           "data": "schedule"
-        },
-        {
-          "data": "headings"
         },
         {
           "data": "date"
