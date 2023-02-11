@@ -21,10 +21,10 @@
                             </div>
                         </div>
                         <div class="col-lg-12">
-                            <div class="col-lg-12" style="display: none;">
+                            <div class="col-lg-12">
                                 <div class="form-group">
                                     <label>Route</label>
-                                    <select class="js-example-basic-single form-control input-item" style="width: 100%;" name="input[route]" id="route">
+                                    <select class="js-example-basic-single form-control input-item" style="width: 100%;" name="input[route]" required id="route">
                                         <option value="">Please Select:</option>
                                         <option value="TO BACOLOD">TO BACOLOD</option>
                                         <option value="TO LA CASTELLANA">TO LA CASTELLANA</option>
