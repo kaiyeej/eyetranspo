@@ -11,7 +11,7 @@ class TripSchedule extends Connection
         $form = array(
             // $this->name             => $this->clean($this->inputs[$this->name]),
             'trip_schedule_time'    => $this->inputs['trip_schedule_time'],
-            'route_id'              => $this->inputs['route_id'],
+            'route'                 => $this->inputs['route'],
             'trip_schedule_fare'    => $this->inputs['trip_schedule_fare']
         );
         return $this->insert($this->table, $form);
@@ -23,7 +23,7 @@ class TripSchedule extends Connection
         $form = array(
             // $this->name             => $this->clean($this->inputs[$this->name]),
             'trip_schedule_time'    => $this->inputs['trip_schedule_time'],
-            'route_id'              => $this->inputs['route_id'],
+            'route'                 => $this->inputs['route'],
             'trip_schedule_fare'    => $this->inputs['trip_schedule_fare']
         );
         
@@ -38,7 +38,6 @@ class TripSchedule extends Connection
         $rows = array();
         $result = $this->select($this->table, '*', $param);
         while ($row = $result->fetch_assoc()) {
-            $row['route'] = $BusRoutes->name($row['route_id']);
             $rows[] = $row;
         }
         return $rows;
