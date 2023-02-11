@@ -1,21 +1,21 @@
 <style>
-#password-strength-status {
-    padding: 5px 10px;
-    border-radius: 4px;
-    margin-top: 5px;
-}
+    #password-strength-status {
+        padding: 5px 10px;
+        border-radius: 4px;
+        margin-top: 5px;
+    }
 
-.medium-password {
-    background-color: #fd0;
-}
+    .medium-password {
+        background-color: #fd0;
+    }
 
-.weak-password {
-    background-color: #FBE1E1;
-}
+    .weak-password {
+        background-color: #FBE1E1;
+    }
 
-.strong-password {
-    background-color: #D5F9D5;
-}
+    .strong-password {
+        background-color: #D5F9D5;
+    }
 </style>
 <div class="content-wrapper">
     <br>
@@ -27,6 +27,9 @@
             <button type="button" onclick="addUser()" class="btn btn-primary mt-2 mt-sm-0 btn-icon-text">
                 <i class="mdi mdi-plus-circle"></i> Add
             </button>
+            <button style="background: #00cff4;" type="button" onclick="approvedUser()" class="btn btn-info mt-2 mt-sm-0 btn-icon-text">
+                <i class="mdi mdi-check-circle" style="background: #0aa7c3;"></i> Approved
+            </button>
         </div>
     </div>
     <div class="row">
@@ -36,9 +39,11 @@
                     <table id="dt_entries" class="table table-striped">
                         <thead class="">
                             <tr>
+                                <th><input type='checkbox' onchange="checkAll(this, 'dt_id')"></th>
                                 <th></th>
                                 <th>Fullname</th>
                                 <th>Category</th>
+                                <th>Status</th>
                                 <th>Username</th>
                                 <th>Date Added</th>
                             </tr>
@@ -89,37 +94,46 @@
     }
 
 
-        function getEntries() {
-            $("#dt_entries").DataTable().destroy();
-            $("#dt_entries").DataTable({
-                "processing": true,
-                "ajax": {
-                    "url": "controllers/sql.php?c=" + route_settings.class_name + "&q=show",
-                    "dataSrc": "data"
-                },
-                "columns": [{
-                        "mRender": function(data, type, row) {
-                            return "<center><button class='btn btn-sm btn-danger' onclick='deleteEntry(" + row.user_id + ")'><span class='mdi mdi-delete'></span></button><button class='btn btn-sm btn-info' onclick='getUserDetails(" + row.user_id + ")'><span class='mdi mdi-lead-pencil'></span></button></center>";
-                        }
-                    },
-                    {
-                        "data": "user_fullname"
-                    },
-                    {
-                        "data": "category"
-                    },
-                    {
-                        "data": "username"
-                    },
-                    {
-                        "data": "date_added"
+    function getEntries() {
+        $("#dt_entries").DataTable().destroy();
+        $("#dt_entries").DataTable({
+            "processing": true,
+            "ajax": {
+                "url": "controllers/sql.php?c=" + route_settings.class_name + "&q=show",
+                "dataSrc": "data"
+            },
+            "columns": [{
+                    "mRender": function(data, type, row) {
+                        return row.status == "A" ? "" : "<input type='checkbox' value=" + row.user_id + " class='dt_id'>";
                     }
-                ]
-            });
-        }
-
-        $(document).ready(function() {
-            getEntries();
-
+                }, {
+                    "mRender": function(data, type, row) {
+                        return "<center><button class='btn btn-sm btn-danger' onclick='deleteEntry(" + row.user_id + ")'><span class='mdi mdi-delete'></span></button><button class='btn btn-sm btn-info' onclick='getUserDetails(" + row.user_id + ")'><span class='mdi mdi-lead-pencil'></span></button></center>";
+                    }
+                },
+                {
+                    "data": "user_fullname"
+                },
+                {
+                    "data": "category"
+                },
+                {
+                    "mRender": function(data, type, row) {
+                        return row.status == "A" ? "<strong style='color:green'>Approved</strong>" : (row.status == "B" ? "<strong style='color:red'>Blocked</strong>" : "<strong style='color:orange'>Pending</strong>");
+                    }
+                },
+                {
+                    "data": "username"
+                },
+                {
+                    "data": "date_added"
+                }
+            ]
         });
+    }
+
+    $(document).ready(function() {
+        getEntries();
+
+    });
 </script>

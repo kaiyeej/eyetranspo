@@ -110,7 +110,7 @@ if (!isset($_SESSION["et_status"])) {
       var originalContents = document.body.innerHTML;
       document.body.innerHTML = printContents;
       window.print();
-      
+
       document.body.innerHTML = originalContents;
 
       location.reload();
@@ -301,6 +301,61 @@ if (!isset($_SESSION["et_status"])) {
       } else {
         modal_detail_status = 0;
       }
+    }
+
+
+    function approvedUser(id) {
+      var count_checked = $("input[class='dt_id']:checked").length;
+
+      if (count_checked > 0) {
+        swal({
+            title: "Are you sure?",
+            text: "You will not be able to recover these entries!",
+            type: "info",
+            showCancelButton: true,
+            confirmButtonClass: "btn-danger",
+            cancelButtonClass: "btn-primary",
+            confirmButtonText: "Yes, approve it!",
+            cancelButtonText: "No, cancel!",
+            closeOnConfirm: false,
+            closeOnCancel: false
+          },
+          function(isConfirm) {
+            if (isConfirm) {
+              var checkedValues = $("input[class='dt_id']:checked").map(function() {
+                return this.value;
+              }).get();
+
+              $.ajax({
+                type: "POST",
+                url: "controllers/sql.php?c=" + route_settings.class_name + "&q=approved",
+                data: {
+                  input: {
+                    ids: checkedValues
+                  }
+                },
+                success: function(data) {
+                  getEntries();
+                  var json = JSON.parse(data);
+                  console.log(json);
+                  if (json.data == 1) {
+                    swal("Success!", "Successfully approved entry!", "success");
+                  } else {
+                    failed_query(json);
+                  }
+                }
+              });
+
+              $("#btn_delete").prop('disabled', true);
+
+            } else {
+              swal("Cancelled", "Entries are safe :)", "error");
+            }
+          });
+      } else {
+        swal("Cannot proceed!", "Please select entries to approve!", "warning");
+      }
+
     }
 
     function deleteEntry(id) {

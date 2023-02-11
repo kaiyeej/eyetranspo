@@ -23,7 +23,8 @@ class Users extends Connection
                 'user_email' => $this->inputs['user_email'],
                 'date_added' => $this->getCurrentDate(),
                 'username' => $this->inputs['username'],
-                'password' => md5($pass)
+                'password' => md5($pass),
+                'statys' => "A"
             );
             return $this->insert($this->table, $form);
         }
@@ -56,6 +57,17 @@ class Users extends Connection
         $ids = implode(",", $this->inputs['ids']);
         return $this->delete($this->table, "$this->pk IN($ids)");
     }
+
+    public function approved()
+    {
+        $form = array(
+            'status' => "A"
+        );
+
+        $ids = implode(",", $this->inputs['ids']);
+        return $this->update($this->table, $form,"$this->pk IN($ids)");
+    }
+    
     
     public function delete_entry()
     {
