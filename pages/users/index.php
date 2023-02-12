@@ -28,7 +28,7 @@
                 <i class="mdi mdi-plus-circle"></i> Add
             </button>
             <button style="background: #00cff4;" type="button" onclick="approvedUser()" class="btn btn-info mt-2 mt-sm-0 btn-icon-text">
-                <i class="mdi mdi-check-circle" style="background: #0aa7c3;"></i> Approved
+                <i class="mdi mdi-check-circle" style="background: #0aa7c3;"></i> Verify
             </button>
         </div>
     </div>
@@ -119,7 +119,7 @@
                 },
                 {
                     "mRender": function(data, type, row) {
-                        return row.status == "A" ? "<strong style='color:green'>Approved</strong>" : (row.status == "B" ? "<strong style='color:red'>Blocked</strong>" : "<strong style='color:orange'>Pending</strong>");
+                        return row.status == "A" ? "<strong style='color:green'>Verified</strong>" : (row.status == "B" ? "<strong style='color:red'>Blocked</strong>" : "<strong style='color:orange'>Pending</strong>");
                     }
                 },
                 {
