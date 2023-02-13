@@ -68,6 +68,39 @@ class BusHistory extends Connection
         return $rows;
     }
 
+    public function show_daily()
+    {
+        $rows = array();
+        $Trips = new Trips();
+        $Users = new Users();
+        $Buses = new Buses();
+        $rows = array();
+        $count = 1;
+
+        $user_id = $this->inputs['user_id'];
+        $date_added = $this->inputs['date_added'];
+
+        if($user_id == -1){
+            $param = "";
+        }else{
+            $param = "AND user_id = '$user_id'";
+        }
+
+        $result = $this->select("tbl_transactions", '*', "DATE(date_added) = '$date_added' $param");
+        while ($row = $result->fetch_assoc()) {
+            $row['count'] = $count;
+            $row['bus'] = $row['bus_id'] == 0 ? "---" : $Buses->name($row['bus_id']);
+            $row['passenger'] = $row['user_id'] == 0 ? "---" : $Users->fullname($row['user_id']);
+            $row['trip'] = $Trips->name($row['trip_id']);
+            $row['remarks'] = $row['remarks'];
+            $row['fare'] = number_format($row['fare'],2);
+            $rows[] = $row;
+
+            $count++;
+        }
+        return $rows;
+    }
+
 
 
     public function view()

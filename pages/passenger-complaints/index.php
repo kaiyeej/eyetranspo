@@ -37,6 +37,11 @@
         <div class="card" style="border: 1px dashed #c82a2b;">
             <div class="card-body">
                 <div id="report_container">
+                    <center>
+                        <h4 class="page-title">Passenger Complaints Report</h4>
+                        <span style="font-size: 12px;">LC Star Transport Cooperative</span>
+                        <br><br>
+                    </center>
                     <table id="dt_entries" class="table table-hover">
                         <thead class="">
                             <tr>

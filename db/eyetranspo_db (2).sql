@@ -115,7 +115,7 @@ CREATE TABLE `tbl_transactions` (
   `remarks` text NOT NULL,
   `status` varchar(1) NOT NULL,
   `date_added` datetime NOT NULL DEFAULT current_timestamp(),
-  `destination` text DEFAULT '0,0'
+  `destination` text DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -200,9 +200,9 @@ INSERT INTO `tbl_trip_schedule` (`trip_schedule_id`, `trip_schedule_marker`, `tr
 
 CREATE TABLE `tbl_users` (
   `user_id` int(11) NOT NULL,
-  `user_fname` varchar(50) NOT NULL,
-  `user_mname` varchar(50) NOT NULL DEFAULT '0',
-  `user_lname` varchar(50) NOT NULL,
+  `user_fname` varchar(50) NOT NULL DEFAULT '',
+  `user_mname` varchar(50) NOT NULL DEFAULT '',
+  `user_lname` varchar(50) NOT NULL DEFAULT '',
   `user_contact_number` varchar(15) NOT NULL,
   `user_email` varchar(50) NOT NULL,
   `user_img` text NOT NULL,
@@ -210,7 +210,7 @@ CREATE TABLE `tbl_users` (
   `password` varchar(50) NOT NULL DEFAULT '',
   `user_category` varchar(1) NOT NULL COMMENT 'P = Passenger; A = Admin; C = Conductor',
   `date_added` datetime NOT NULL DEFAULT current_timestamp(),
-  `location` text DEFAULT '0.0',
+  `location` text DEFAULT '',
   `id_token` text DEFAULT NULL,
   `status` varchar(1) NOT NULL COMMENT 'Approved, Pending and Blocked'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

@@ -45,6 +45,10 @@ $routes = array(
         'class_name' => 'BusHistory',
         'has_detail' => 0
     ),
+    "daily-passengers" => array(
+        'class_name' => 'BusHistory',
+        'has_detail' => 0
+    ),
 );
 /** END SET ROUTES */
 

@@ -2,19 +2,23 @@
     <br>
     <div class="page-header flex-wrap">
         <div class="header-left">
-            <h3 class="page-title">Bus History</h3>
+            <h3 class="page-title">Daily VIP Passenger</h3>
         </div>
     </div>
     <div class="row">
         <div class="card" style="background: #dde2ff;border: 2px dashed #283593;">
             <div class="card-body row">
                 <div class="col-md-4">
-                    <label><strong>Bus</strong></label>
-                    <select class="form-control input-item" style="width: 100%;height: 35px;" name="input[bus_id]" id="bus_id" required>
+                    <label><strong>Date</strong></label>
+                    <input type='date' class="form-control input-item" style="width: 100%;height: 35px;" name="input[date_added]" id="date_added" value="<?= date('Y-m-d'); ?>" required>
+                </div>
+                <div class="col-md-4">
+                    <label><strong>Passenger</strong></label>
+                    <select class="form-control input-item" style="width: 100%;height: 35px;" name="input[user_id]" id="user_id" required>
                         <option value="">Please Select:</option>
                     </select>
                 </div>
-                <div class="col-md-8" style="padding-top: 20px;">
+                <div class="col-md-4" style="padding-top: 20px;">
                     <div class="btn-group">
                         <button type="submit" id="btn_generate" onclick="getEntries()" class="btn btn-primary btn-sm">
                             <span class="icon">
@@ -38,7 +42,7 @@
             <div class="card-body">
                 <div id="report_container">
                     <center>
-                        <h4 class="page-title">Bus History Report</h4>
+                        <h4 class="page-title">Daily VIP Passenger Report</h4>
                         <span style="font-size: 12px;">LC Star Transport Cooperative</span>
                         <br><br>
                     </center>
@@ -47,10 +51,10 @@
                             <tr>
                                 <th>#</th>
                                 <th>Bus</th>
-                                <th>Schedule</th>
-                                <th>Conductor</th>
-                                <th>Headings</th>
-                                <th>Status</th>
+                                <th>Trip</th>
+                                <th>Fare</th>
+                                <th>Passenger</th>
+                                <th>Complaints</th>
                             </tr>
                         </thead>
                     </table>
@@ -62,7 +66,8 @@
 <script type="text/javascript">
 
     function getEntries() {
-        var bus_id = $("#bus_id").val();
+        var user_id = $("#user_id").val();
+        var date_added = $("#date_added").val();
         $("#dt_entries").DataTable().destroy();
         $("#dt_entries").DataTable({
             "processing": true,
@@ -70,12 +75,13 @@
             "info": false,
             "bFilter": false,
             "ajax": {
-                "url": "controllers/sql.php?c=" + route_settings.class_name + "&q=show",
+                "url": "controllers/sql.php?c=" + route_settings.class_name + "&q=show_daily",
                 "dataSrc": "data",
                 "method": "POST",
                 "data": {
                     input: {
-                        bus_id: bus_id
+                        user_id: user_id,
+                        date_added:date_added
                     }
                 },
             },
@@ -86,25 +92,23 @@
                     "data": "bus"
                 },
                 {
-                    "data": "schedule"
+                    "data": "trip"
                 },
                 {
-                    "data": "conductor"
+                    "data": "fare"
                 },
                 {
-                    "data": "headings"
+                    "data": "passenger"
                 },
                 {
-                    "mRender": function(data, type, row) {
-                        return row.status == "A" ? "<strong style='color:green;'>Arrived</strong>" : row.status == "C" ? "<strong style='color:#f44336;'>Cancel</strong>" : row.status == "D" ? "<strong style='color:#ff9800;'>Departed</strong>" : "---";
-                    }
-                },
+                    "data": "remarks"
+                }
             ]
         });
     }
 
     $(document).ready(function() {
-        getSelectOption('Buses', 'bus_id', 'bus_number', '', [], -1, 'All');
+        getSelectOption('Users', 'user_id', 'user_fullname', 'user_category="U" OR user_category="P"', [], -1, 'All');
         getEntries();
         
     });
