@@ -9,9 +9,7 @@ require_once '../core_mobile/config.php';
 
 
 $user_id = $_REQUEST['user_id']; // session
-$lat = $_REQUEST['latitude'];
-$long = $_REQUEST['longitude'];
-$location = $lat.','.$long;
+$location = $_REQUEST['location'];
 $response_array['array_data'] = array();
 
 

@@ -32,6 +32,7 @@ if (isset($username) && isset($password)) {
 
             if ($result_id_token) {
                 $response["user_fname"] = $data['user_fname'];
+                $response["user_mname"] = $data['user_mname'];
                 $response["user_lname"] = $data['user_lname'];
                 $response["contact_number"] = $data['user_contact_number'];
                 $response["category"] = $data['user_category'];
@@ -48,6 +49,7 @@ if (isset($username) && isset($password)) {
 
             if ($result_id_token) {
                 $response["user_fname"] = $data['user_fname'];
+                $response["user_mname"] = $data['user_mname'];
                 $response["user_lname"] = $data['user_lname'];
                 $response["contact_number"] = $data['user_contact_number'];
                 $response["category"] = $data['user_category'];
