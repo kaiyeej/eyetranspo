@@ -6,7 +6,7 @@ header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 
-require_once '../../core/config.php';
+require_once '../core_mobile/config.php';
 $userd_id = $_REQUEST['user_id'];
 $fname = $_REQUEST['fname'];
 $mname = $_REQUEST['mname'];
@@ -28,6 +28,3 @@ if ($fetch_trans) {
 
 array_push($response_array['array_data'], $response);
 echo json_encode($response_array);
-
-
-
