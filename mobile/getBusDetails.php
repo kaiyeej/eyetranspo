@@ -7,16 +7,17 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 require_once '../core_mobile/config.php';
 
-$bus_number = $_REQUEST['bus_number'];
+$user_id = $_REQUEST['user_id'];
+
 $response_array['array_data'] = array();
-$fetch = $mysqli_connect->query("SELECT * FROM tbl_buses WHERE bus_number='$bus_number'");
+$fetch = $mysqli_connect->query("SELECT * FROM tbl_buses WHERE bus_id='" . getBusIdByConductor($user_id) . "'");
 while ($row = $fetch->fetch_array()) {
     $response = array();
 
     $response["bus_id"] = $row['bus_id'];
     $response["bus_number"] = $row['bus_number'];
-    $response["driver_name"] = getDriverDetailsUsingBusId($row['bus_id'])['driver_fname']." ".getDriverDetailsUsingBusId($row['bus_id'])['driver_lname'];
-    $response['bus_route'] = getBusRoute($row['bus_id']);  
+    $response["driver_name"] = getDriverDetailsUsingBusId($row['bus_id'])['driver_fname'] . " " . getDriverDetailsUsingBusId($row['bus_id'])['driver_lname'];
+    $response['bus_route'] = getBusRoute($row['bus_id']);
     $response["bus_plate_number"] = $row['bus_plate_number'];
     $response["bus_operator"] = $row['bus_operator'];
     $response["bus_max_capacity"] = $row['bus_max_capacity'];

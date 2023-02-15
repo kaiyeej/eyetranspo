@@ -7,20 +7,22 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 require_once '../core_mobile/config.php';
 
-$headings = $_REQUEST['headings'];
+$bus_id = $_REQUEST['bus_id'];
 $response_array['array_data'] = array();
-$fetch = $mysqli_connect->query("SELECT * FROM tbl_trips where headings='$headings'");
+$fetch = $mysqli_connect->query("SELECT * FROM tbl_transactions WHERE bus_id='$bus_id' AND `status`!='C' AND `status`!='F'");
 while ($row = $fetch->fetch_array()) {
     $response = array();
-
+    $response["transaction_id"] = $row['transaction_id'];
     $response["trip_id"] = $row['trip_id'];
     $response["bus_id"] = $row['bus_id'];
-    $response["bus_number"] = getBusNumber($row['bus_id']);
-    $response["trip_schedule_id"] = $row['trip_schedule_id'];
-    $response["date_departed"] = $row['date_departed'];
-    $response["date_arrived"] = $row['date_arrived'];
-    $response["headings"] = $row['headings'];
-    $response["bus_route"] = getBusRoute($row['bus_id']);
+    $response["passenger_id"] = $row['user_id'];
+    $response["passenger_name"] = getUserName($row['user_id']);
+    $response["fare"] = $row['fare'];
+    $response["remarks"] = $row['remarks'];
+    $response["status"] = $row['status'];
+    $response["date_added"] = $row['date_added'];
+    $response["destination"] = $row['destination'];
+    $response["passenger_loc"] = getUserLocation($row['user_id']);
 
     array_push($response_array['array_data'], $response);
 }

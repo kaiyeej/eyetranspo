@@ -6,13 +6,13 @@ header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 
-require_once '../core_mobile/config.php';
-$trip_id = $_REQUEST['trip_id'];
+require_once '../../core/config.php';
+$bus_id = $_REQUEST['bus_id'];
 $status = $_REQUEST['status'];
 $response_array['array_data'] = array();
 
 $response = array();
-$fetch_trans = $mysqli_connect->query("UPDATE `tbl_transactions` SET `status`='$status' WHERE trip_id='$trip_id'");
+$fetch_trans = $mysqli_connect->query("UPDATE `tbl_trips` SET `status`='$status' WHERE bus_id='$bus_id'");
 
 if ($fetch_trans) {
     $response["response"] = 1;

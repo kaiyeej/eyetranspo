@@ -22,11 +22,11 @@ function getBusNumber($bus_id)
 	}
 	return $bus_num;
 }
-function getBusRoute($bus_id)
+function getBusRoute($trip_schedule_id)
 {
 	global $mysqli_connect;
 
-	$fetch = $mysqli_connect->query("SELECT route_name FROM tbl_buses AS b, tbl_route AS r WHERE b.bus_id='$bus_id' AND b.route_id=r.route_id");
+	$fetch = $mysqli_connect->query("SELECT route FROM tbl_trip_schedule WHERE trip_schedule_id='$trip_schedule_id'");
 	$row = $fetch->fetch_array();
 	if (empty($row[0])) {
 		$bus_r = 'N/A';
@@ -89,7 +89,7 @@ function getTripScheduleDetails($trip_schedule_id)
 function getTransactionDetails($trip_id)
 {
 	global $mysqli_connect;
-	$fetch = $mysqli_connect->query("SELECT * FROM tbl_transactions WHERE trip_id='$trip_id' AND `status`='P' OR `status`='D'");
+	$fetch = $mysqli_connect->query("SELECT * FROM tbl_transactions WHERE trip_id='$trip_id' AND `status`!='C' OR `status`!='F'");
 	$row = $fetch->fetch_array();
 	return $row;
 }
@@ -106,11 +106,11 @@ function getUserLocation($user_id)
 	}
 	return $location;
 }
-function getUserDestination($user_id)
+function getUserDestination($user_id, $trip_id)
 {
 	global $mysqli_connect;
 
-	$fetch = $mysqli_connect->query("SELECT destination FROM tbl_transactions WHERE user_id='$user_id' AND `status`='P' OR `status`='D'");
+	$fetch = $mysqli_connect->query("SELECT destination FROM tbl_transactions WHERE user_id='$user_id' AND trip_id='$trip_id' AND `status`!='C' OR `status`!='F'");
 	$row = $fetch->fetch_array();
 	if (empty($row[0])) {
 		$location = 0;
@@ -171,4 +171,22 @@ function getUserName($id)
 	$fetch = $mysqli_connect->query("SELECT * FROM tbl_users WHERE user_id='$id'");
 	$data = $fetch->fetch_array();
 	return $data['user_fname'] . " " . $data['user_lname'];
+}
+function getTransactionStatus($user_id)
+{
+	global $mysqli_connect;
+
+	$fetch = $mysqli_connect->query("SELECT `status` FROM tbl_transactions WHERE user_id='$user_id' AND `status`!='C' OR `status`!='F'");
+	$data = $fetch->fetch_array();
+
+	return $data[0];
+}
+function getBusIdByConductor($user_id)
+{
+	global $mysqli_connect;
+
+	$fetch = $mysqli_connect->query("SELECT bus_id FROM tbl_trips WHERE user_id='$user_id'");
+	$data = $fetch->fetch_array();
+
+	return $data[0];
 }

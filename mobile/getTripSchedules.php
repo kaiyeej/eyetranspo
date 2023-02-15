@@ -7,9 +7,8 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 require_once '../core_mobile/config.php';
 
-$headings = $_REQUEST['headings'];
 $response_array['array_data'] = array();
-$fetch = $mysqli_connect->query("SELECT * FROM tbl_trips where headings='$headings'");
+$fetch = $mysqli_connect->query("SELECT * FROM tbl_trips");
 while ($row = $fetch->fetch_array()) {
     $response = array();
 
@@ -20,7 +19,7 @@ while ($row = $fetch->fetch_array()) {
     $response["date_departed"] = $row['date_departed'];
     $response["date_arrived"] = $row['date_arrived'];
     $response["headings"] = $row['headings'];
-    $response["bus_route"] = getBusRoute($row['bus_id']);
+    $response["bus_route"] = getBusRoute($row['trip_schedule_id']);
     $response["conductor_id"] = $row['user_id'];
 
     array_push($response_array['array_data'], $response);

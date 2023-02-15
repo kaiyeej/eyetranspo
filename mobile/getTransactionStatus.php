@@ -12,13 +12,16 @@ $user_id = $_REQUEST['user_id'];
 $response_array['array_data'] = array();
 
 $response = array();
-$fetch_trans = $mysqli_connect->query("SELECT * FROM tbl_transactions WHERE user_id='$user_id' AND `status` = 'P'");
+$fetch_trans = $mysqli_connect->query("SELECT * FROM tbl_transactions WHERE user_id='$user_id' AND `status` != 'C' OR `status` != 'F'");
 $row_trans = $fetch_trans->fetch_array();
 $count = $fetch_trans->num_rows;
 if ($count > 0) {
-    $response["response"] = $row_trans['trip_id'];
+    $response["status"] = 1;
+    $response["user_id"] = $row_trans['user_id'];
+    $response["bus_id"] = $row_trans['bus_id'];
+    $response["trip_id"] = $row_trans['trip_id'];
 } else {
-    $response["response"] = 0;
+    $response["status"] = 0;
 }
 
 

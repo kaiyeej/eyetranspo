@@ -12,9 +12,9 @@ $user_id = $_REQUEST['user_id'];
 $trip_id = $_REQUEST['trip_id'];
 $destination = $_REQUEST['destination'];
 $fare = getTripFare($_REQUEST['trip_schedule_id']);
-
+$date = getCurrentDate();
 $response = array();
-$fetch = $mysqli_connect->query("INSERT INTO `tbl_transactions` (`bus_id`, `trip_id`, `user_id`, `fare`, `status`, `destination`) VALUES ('$bus_id', '$trip_id', '$user_id', '$fare', 'P','$destination')");
+$fetch = $mysqli_connect->query("INSERT INTO `tbl_transactions` (`bus_id`, `trip_id`, `user_id`, `fare`, `status`,`date_added`, `destination`) VALUES ('$bus_id', '$trip_id', '$user_id', '$fare', 'P','$date','$destination')");
 if ($fetch) {
     $response["response"] = 1;
 } else {

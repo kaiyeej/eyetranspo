@@ -8,6 +8,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 require_once '../core_mobile/config.php';
 
 $trip_id = $_REQUEST['trip_id'];
+// $user_id = $_REQUEST['user_id'];
 $response_array['array_data'] = array();
 $fetch = $mysqli_connect->query("SELECT * FROM tbl_trips where trip_id='$trip_id'");
 while ($row = $fetch->fetch_array()) {
@@ -22,7 +23,8 @@ while ($row = $fetch->fetch_array()) {
     $response['date_arrived'] =  date('M j, Y h:iA', strtotime($row['date_arrived']));
     $response['bus_location'] = getUserLocation($row['user_id']);
     $response['conductor_id'] = $row['user_id'];
-    $response['destination'] = getUserDestination(getTransactionDetails($row['trip_id'])['user_id']);
+    $response['destination'] = getUserDestination(getTransactionDetails($row['trip_id'])['user_id'], $row['trip_id']);
+    $response['status'] = getTransactionStatus(getTransactionDetails($row['trip_id'])['user_id']);
     array_push($response_array['array_data'], $response);
 }
 echo json_encode($response_array);
