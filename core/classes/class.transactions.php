@@ -30,7 +30,7 @@ class Transactions extends Connection
             $row['count'] = $count;
             $row['bus'] = $Buses->name($row['bus_id']);
             $row['user'] = $Users->fullname($row['user_id']);
-            $row['trip'] = $Trips->name($row['trip_id']);
+            $row['trip'] = $Buses->name($Trips->name($row['trip_id']));
             $count++;
             $rows[] = $row;
         }
