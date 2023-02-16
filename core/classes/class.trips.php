@@ -86,12 +86,19 @@ class Trips extends Connection
 
     public function arrived(){
 
+
         $primary_id = $this->inputs['id'];
         $form = array(
             'status' => 'A',
         );
+
+        $this->update($this->table, $form, "$this->pk = $primary_id");
+
+        $form_ = array(
+            'status' => 'F',
+        );
         
-        return $this->update($this->table, $form, "$this->pk = $primary_id");
+        return $this->update('tbl_transactions', $form_, "$this->pk = $primary_id");
     }
 
 }
