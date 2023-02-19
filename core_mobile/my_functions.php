@@ -89,7 +89,7 @@ function getTripScheduleDetails($trip_schedule_id)
 function getTransactionDetails($trip_id)
 {
 	global $mysqli_connect;
-	$fetch = $mysqli_connect->query("SELECT * FROM tbl_transactions WHERE trip_id='$trip_id' AND `status`!='C' OR `status`!='F'");
+	$fetch = $mysqli_connect->query("SELECT * FROM tbl_transactions WHERE trip_id='$trip_id' AND `status`!='C' AND `status`!='F'");
 	$row = $fetch->fetch_array();
 	return $row;
 }
@@ -110,7 +110,7 @@ function getUserDestination($user_id, $trip_id)
 {
 	global $mysqli_connect;
 
-	$fetch = $mysqli_connect->query("SELECT destination FROM tbl_transactions WHERE user_id='$user_id' AND trip_id='$trip_id' AND `status`!='C' OR `status`!='F'");
+	$fetch = $mysqli_connect->query("SELECT destination FROM tbl_transactions WHERE user_id='$user_id' AND trip_id='$trip_id' AND `status`!='C' AND `status`!='F'");
 	$row = $fetch->fetch_array();
 	if (empty($row[0])) {
 		$location = 0;
@@ -176,7 +176,7 @@ function getTransactionStatus($user_id)
 {
 	global $mysqli_connect;
 
-	$fetch = $mysqli_connect->query("SELECT `status` FROM tbl_transactions WHERE user_id='$user_id' AND `status`!='C' OR `status`!='F'");
+	$fetch = $mysqli_connect->query("SELECT `status` FROM tbl_transactions WHERE user_id='$user_id' AND `status`!='C' AND `status`!='F'");
 	$data = $fetch->fetch_array();
 
 	return $data[0];
