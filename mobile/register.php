@@ -22,7 +22,7 @@ $response_array['array_data'] = array();
 if (isset($username) && isset($password)) {
 
 	$response = array();
-	$fetch_rows = $mysqli_connect->query("SELECT COUNT(user_id) as counter from tbl_users WHERE user_fname='$fname' AND user_mname='$mname' AND user_lname='$lname'");
+	$fetch_rows = $mysqli_connect->query("SELECT COUNT(user_id) as counter from tbl_users WHERE user_fname='$fname' AND user_mname='$mname' AND user_lname='$lname' AND username='$username'");
 	$row = $fetch_rows->fetch_array();
 
 	if ($row['counter'] == 0) {
