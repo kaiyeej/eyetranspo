@@ -14,5 +14,6 @@ $classes = array(
     'TripSchedule'      => $pre_class . 'tripschedule.php',
     'Transactions'      => $pre_class . 'transactions.php',
     'BusHistory'        => $pre_class . 'bushistory.php',
+    'Profile'           => $pre_class . 'profile.php',
     
 );

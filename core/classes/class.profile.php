@@ -19,11 +19,11 @@ class Profile extends Connection
                 'user_mname' => $this->inputs['user_mname'],
                 'user_lname' => $this->inputs['user_lname'],
                 'user_email' => $this->inputs['user_email'],
-                'user_contact_num' => $this->inputs['user_contact_num'],
+                'user_contact_number' => $this->inputs['user_contact_number'],
                 'user_category' => $this->inputs['user_category'],
                 'date_added' => $this->getCurrentDate(),
                 'username' => $this->inputs['username'],
-                'password' => md5('$pass')
+                'password' => md5($pass)
             );
             return $this->insert($this->table, $form);
         }
@@ -42,8 +42,7 @@ class Profile extends Connection
                 'user_mname' => $this->inputs['user_mname'],
                 'user_lname' => $this->inputs['user_lname'],
                 'user_email' => $this->inputs['user_email'],
-                'user_contact_num' => $this->inputs['user_contact_num'],
-                'user_category' => $this->inputs['user_category'],
+                'user_contact_number' => $this->inputs['user_contact_number'],
                 'username' => $username
             );
             return $this->update($this->table, $form, "$this->pk = '$primary_id'");

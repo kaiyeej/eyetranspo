@@ -6,7 +6,7 @@ $Users = new Users();
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
         <li class="nav-item nav-profile border-bottom">
-            <a href="#" class="nav-link flex-column">
+            <a href="#" onclick="window.location='profile'" class="nav-link flex-column">
                 <div class="nav-profile-image">
                     <i class="mdi mdi-account-circle" style="font-size:70px;"></i>
                     <!--change to offline or busy as needed-->
