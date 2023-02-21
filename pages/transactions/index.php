@@ -58,7 +58,7 @@
                 },
                 {
                     "mRender": function(data, type, row) {
-                        return row.status == "F" ? "<strong style='color:green;'>Finished</strong>" : row.status == "C" ? "<strong style='color:#f44336;'>Cancel</strong>" : "Pending" ;
+                        return row.status == "F" ? "<strong style='color:green;'>Finished</strong>" : row.status == "C" ? "<strong style='color:#f44336;'>Cancel</strong>" : row.status == "B" ? "<strong style='color: #cddc39;'>Boarded</strong>" : "Pending" ;
                     }
                 },
                 {
