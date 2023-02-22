@@ -45,6 +45,7 @@
                                 <th>Category</th>
                                 <th>Status</th>
                                 <th>Username</th>
+                                <th>ID</th>
                                 <th>Date Added</th>
                             </tr>
                         </thead>
@@ -55,6 +56,7 @@
     </div>
 </div>
 <?php include "modal_user.php"; ?>
+<?php include "modal_upload.php"; ?>
 <script type="text/javascript">
     var pass_status = 0;
 
@@ -126,10 +128,28 @@
                     "data": "username"
                 },
                 {
+                    "mRender": function(data, type, row) {
+                        return row.user_img == "" ? "<img style='width:70px;' src='assets/images/no_image.jpg' onclick=\"uploadImage('" + row.user_img + "')\">" : "<img src='assets/pwd_id_images/" + row.user_img + "' style='width: 70px;height: fit-content;border-radius: 0%;' onclick=\"uploadImage('" + row.user_img + "')\">";
+                    }
+                },
+                {
                     "data": "date_added"
                 }
             ]
         });
+    }
+
+    
+    function uploadImage(user_img) {
+      // alert(user_img);
+      if(user_img != ""){
+        $("#div_pwd_id").html("<img class='img-fluid' src='assets/pwd_id_images/" + user_img + "'>");
+      }else{
+        $("#div_pwd_id").html("<center><h4>No image found.</h4></center>");
+      }
+      
+      $("#modalUpload").modal('show');
+
     }
 
     $(document).ready(function() {
