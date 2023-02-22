@@ -138,7 +138,7 @@ function sendNotif($user_id, $title, $body)
 	//$body = "Test";
 
 	//Creating the notification array.
-	$notification = array('title' => $title, 'message' => $body);
+	$notification = array('title' => $title, 'body' => $body);
 
 	//This array contains, the token and the notification. The 'to' attribute stores the token.
 	$arrayToSend = array('registration_ids' => $tokens, 'notification' => $notification, 'priority' => 'high');
