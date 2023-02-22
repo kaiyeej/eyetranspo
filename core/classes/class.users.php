@@ -89,7 +89,7 @@ class Users extends Connection
         //$body = "Test";
 
         //Creating the notification array.
-        $notification = array('title' => $title, 'text' => $body);
+        $notification = array('title' => $title, 'message' => $body);
 
         //This array contains, the token and the notification. The 'to' attribute stores the token.
         $arrayToSend = array('registration_ids' => $tokens, 'notification' => $notification, 'priority' => 'high');
