@@ -64,6 +64,11 @@ class Users extends Connection
             'status' => "A"
         );
 
+        foreach ($this->inputs['ids'] as $users) {
+            sendNotif($users, 'Congratulations!', 'Your account was successfully verified.');
+        }
+
+
         $ids = implode(",", $this->inputs['ids']);
         return $this->update($this->table, $form,"$this->pk IN($ids)");
     }
