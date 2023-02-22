@@ -64,16 +64,60 @@ class Users extends Connection
             'status' => "A"
         );
 
-        foreach ($this->inputs['ids'] as $users) {
-            sendNotif($users, 'Congratulations!', 'Your account was successfully verified.');
+        $ids = implode(",", $this->inputs['ids']);
+        foreach ((array) $this->inputs['ids'] as $user_id) {
+            $this->sendNotif($user_id, 'Congratulations!', 'Your account was successfully verified.');
         }
 
-
-        $ids = implode(",", $this->inputs['ids']);
-        return $this->update($this->table, $form,"$this->pk IN($ids)");
+        return $this->update($this->table, $form, "$this->pk IN($ids)");
     }
-    
-    
+
+    function sendNotif($user_id, $title, $body)
+    {
+
+        $url = 'https://fcm.googleapis.com/fcm/send';
+
+        $result = $this->select($this->table, "id_token", "$this->pk = '$user_id'");
+        $idtoken = $result->fetch_assoc();
+
+        $tokens = array($idtoken['id_token'], "");
+
+        //Title of the Notification.
+        //$title = "Title";
+
+        //Body of the Notification.
+        //$body = "Test";
+
+        //Creating the notification array.
+        $notification = array('title' => $title, 'text' => $body);
+
+        //This array contains, the token and the notification. The 'to' attribute stores the token.
+        $arrayToSend = array('registration_ids' => $tokens, 'notification' => $notification, 'priority' => 'high');
+
+        //Generating JSON encoded string form the above array.
+        $json = json_encode($arrayToSend);
+        //Setup headers:
+        $headers = array();
+        $headers[] = 'Content-Type: application/json';
+        $headers[] = 'Authorization: key=AAAAKHerr0k:APA91bFat1gnsBdgVQm8kLKrW0EmgYakJyLZssbF8_S41WscrO_1qDWSI2JGJk4N5zu_Rc5_lyZJHOXwh9ioWYLfkOp8akdNgZzKDi9fJdgROeE_ajhnswpxDKCTIzONu9W_2D_cLbtK'; // key here
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+        //Send the request
+        $response = curl_exec($ch);
+
+        //Close request
+        curl_close($ch);
+        return $response;
+    }
+
+
     public function delete_entry()
     {
         $id = $this->inputs['id'];
@@ -87,8 +131,8 @@ class Users extends Connection
         $rows = array();
         $result = $this->select($this->table, '*', $param);
         while ($row = $result->fetch_assoc()) {
-            $row['user_fullname'] = $row['user_fname']." ".$row['user_mname']." ".$row['user_lname'];
-            $row['category'] = $row['user_category'] == "A" ? "Admin" : ($row['user_category'] == "C" ? "Conductor" : "Passenger" );
+            $row['user_fullname'] = $row['user_fname'] . " " . $row['user_mname'] . " " . $row['user_lname'];
+            $row['category'] = $row['user_category'] == "A" ? "Admin" : ($row['user_category'] == "C" ? "Conductor" : "Passenger");
             $rows[] = $row;
         }
         return $rows;
@@ -114,23 +158,20 @@ class Users extends Connection
         $self = new self;
         $result = $self->select($self->table, 'user_category', "$self->pk  = '$primary_id'");
         $row = $result->fetch_assoc();
-        return $row['user_category'] == "A" ? "Admin" : ($row['user_category'] == "C" ? "Conductor" : "Passenger") ;
+        return $row['user_category'] == "A" ? "Admin" : ($row['user_category'] == "C" ? "Conductor" : "Passenger");
     }
 
     public static function fullname($primary_id)
     {
         $self = new self;
         $result = $self->select($self->table, 'user_fname,user_mname,user_lname', "$self->pk  = '$primary_id'");
-        
-        if($result->num_rows > 0){
-            $row = $result->fetch_array();
-            return $row[0]." ".$row[1]." ".$row[2];
 
-        }else{
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_array();
+            return $row[0] . " " . $row[1] . " " . $row[2];
+        } else {
             return "---";
         }
-
-        
     }
 
     public static function number($primary_id)
@@ -140,7 +181,7 @@ class Users extends Connection
         $row = $result->fetch_array();
         return $row[0];
     }
-    
+
     public static function dataRow($primary_id, $field = "*")
     {
         $self = new self;
