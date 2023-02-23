@@ -13,9 +13,11 @@
                     <input type='date' class="form-control input-item" style="width: 100%;height: 35px;" name="input[date_added]" id="date_added" value="<?= date('Y-m-d'); ?>" required>
                 </div>
                 <div class="col-md-4">
-                    <label><strong>Passenger</strong></label>
-                    <select class="form-control input-item" style="width: 100%;height: 35px;" name="input[user_id]" id="user_id" required>
-                        <option value="">Please Select:</option>
+                    <label><strong>Route</strong></label>
+                    <select class="form-control input-item" style="width: 100%;height: 35px;" name="input[route_name]" id="route_name" required>
+                        <option value="-1">&mdash; ALL &mdash;</option>
+                        <option value="TO LA CASTELLANA">TO LA CASTELLANA</option>
+                        <option value="TO BACOLOD">TO BACOLOD</option>
                     </select>
                 </div>
                 <div class="col-md-4" style="padding-top: 20px;">
@@ -66,7 +68,7 @@
 <script type="text/javascript">
 
     function getEntries() {
-        var user_id = $("#user_id").val();
+        var route_name = $("#route_name").val();
         var date_added = $("#date_added").val();
         $("#dt_entries").DataTable().destroy();
         $("#dt_entries").DataTable({
@@ -80,7 +82,7 @@
                 "method": "POST",
                 "data": {
                     input: {
-                        user_id: user_id,
+                        route_name: route_name,
                         date_added:date_added
                     }
                 },
@@ -108,7 +110,7 @@
     }
 
     $(document).ready(function() {
-        getSelectOption('Users', 'user_id', 'user_fullname', 'user_category="U" OR user_category="P"', [], -1, 'All');
+        //getSelectOption('Users', 'user_id', 'user_fullname', 'user_category="U" OR user_category="P"', [], -1, 'All');
         getEntries();
         
     });

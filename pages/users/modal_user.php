@@ -51,21 +51,13 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label>Email</label>
-                                <div>
-                                    <input type="email" class="form-control input-item" name="input[user_email]" autocomplete="off" id="user_email" placeholder="Email address" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group">
                                 <label>Username</label>
                                 <div>
                                     <input type="text" class="form-control input-item" name="input[username]" autocomplete="off" id="username" placeholder="Username" maxlength=15 required>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-12">
                             <div id="div_password" class="form-group">
                                 <label>Password</label>
                                 <div>

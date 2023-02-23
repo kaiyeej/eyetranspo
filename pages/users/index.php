@@ -45,7 +45,7 @@
                                 <th>Category</th>
                                 <th>Status</th>
                                 <th>Username</th>
-                                <th>ID</th>
+                                <th>Image</th>
                                 <th>Date Added</th>
                             </tr>
                         </thead>

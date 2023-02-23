@@ -9,8 +9,8 @@
         <div class="card" style="background: #dde2ff;border: 2px dashed #283593;">
             <div class="card-body row">
                 <div class="col-md-4">
-                    <label><strong>Passenger</strong></label>
-                    <select class="form-control input-item" style="width: 100%;height: 35px;" name="input[user_id]" id="user_id" required>
+                    <label><strong>Bus</strong></label>
+                    <select class="form-control input-item" style="width: 100%;height: 35px;" name="input[bus_id]" id="bus_id" required>
                         <option value="">Please Select:</option>
                     </select>
                 </div>
@@ -61,7 +61,7 @@
 <script type="text/javascript">
 
     function getEntries() {
-        var user_id = $("#user_id").val();
+        var bus_id = $("#bus_id").val();
         $("#dt_entries").DataTable().destroy();
         $("#dt_entries").DataTable({
             "processing": true,
@@ -74,7 +74,7 @@
                 "method": "POST",
                 "data": {
                     input: {
-                        user_id: user_id
+                        bus_id: bus_id
                     }
                 },
             },
@@ -98,7 +98,7 @@
     }
 
     $(document).ready(function() {
-        getSelectOption('Users', 'user_id', 'user_fullname', 'user_category="U" OR user_category="P"', [], -1, 'All');
+        getSelectOption('Buses', 'bus_id', 'bus_number', '', [], -1, 'All');
         getEntries();
         
     });

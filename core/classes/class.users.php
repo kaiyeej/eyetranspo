@@ -20,7 +20,6 @@ class Users extends Connection
                 'user_lname' => $this->inputs['user_lname'],
                 'user_contact_number' => $this->inputs['user_contact_number'],
                 'user_category' => $this->inputs['user_category'],
-                'user_email' => $this->inputs['user_email'],
                 'date_added' => $this->getCurrentDate(),
                 'username' => $this->inputs['username'],
                 'password' => md5($pass),
@@ -44,7 +43,6 @@ class Users extends Connection
                 'user_lname' => $this->inputs['user_lname'],
                 'user_contact_number' => $this->inputs['user_contact_number'],
                 'user_category' => $this->inputs['user_category'],
-                'user_email' => $this->inputs['user_email'],
                 'username' => $username
             );
             return $this->update($this->table, $form, "$this->pk = '$primary_id'");

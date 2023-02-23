@@ -57,6 +57,14 @@ class Trips extends Connection
         return $rows;
     }
 
+    public function trip_sched($trip_id)
+    {
+        $TripSchedule = new TripSchedule();
+        $result = $this->select($this->table, "trip_schedule_id", "$this->pk = '$trip_id'");
+        $trip_schedule_id =  $result->fetch_assoc();
+        return $TripSchedule->route_name($trip_schedule_id['trip_schedule_id']);
+    }
+
     public function view()
     {
         $primary_id = $this->inputs['id'];
