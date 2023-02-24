@@ -59,7 +59,7 @@ class BusHistory extends Connection
             $row['count'] = $count;
             $row['bus'] = $row['bus_id'] == 0 ? "---" : $Buses->name($row['bus_id']);
             $row['passenger'] = $row['user_id'] == 0 ? "---" : $Users->fullname($row['user_id']);
-            $row['trip'] = $Trips->name($row['trip_id']);
+            $row['trip'] = $Trips->trip_sched($row['trip_id']);
             $row['remarks'] = $row['remarks'];
             $rows[] = $row;
 
