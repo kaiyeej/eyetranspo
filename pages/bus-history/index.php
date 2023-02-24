@@ -49,7 +49,6 @@
                                 <th>Bus</th>
                                 <th>Schedule</th>
                                 <th>Conductor</th>
-                                <th>Headings</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
@@ -90,9 +89,6 @@
                 },
                 {
                     "data": "conductor"
-                },
-                {
-                    "data": "headings"
                 },
                 {
                     "mRender": function(data, type, row) {
