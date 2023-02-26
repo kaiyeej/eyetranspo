@@ -42,7 +42,7 @@
                 <input type="text" autocomplete="off" class="form-control input-item" id="user_lname" name="input[user_lname]" placeholder="Last name">
               </div>
 
-              <div class="form-group col-sm-6">
+              <div class="form-group col-sm-6" style="display:none;">
                 <label for="exampleInputUsername1">Email</label>
                 <input type="email" autocomplete="off" class="form-control input-item" id="user_email" name="input[user_email]" placeholder="Email address">
               </div>
@@ -58,7 +58,7 @@
               </div>
               <input type="hidden" autocomplete="off" value="<?= $_SESSION['et_user_id'] ?>" name="input[user_id]" class="form-control" id="hidden_id">
               
-              <div class="form-group col-sm-6">
+              <div class="form-group col-sm-12">
                 <button type="submit" style="float: right;margin-top: 20px;" id="btn_submit" class="btn btn-primary me-2">Save</button>
               </div>
             </div>
