@@ -1,6 +1,8 @@
 <?php
 $Homepage = new Homepage();
 ?>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
 <div class="content-wrapper pb-0">
   <div class="row">
     <div class="col-sm-4 stretch-card grid-margin">
@@ -55,7 +57,7 @@ $Homepage = new Homepage();
     </div>
     <div class="col-xl-8 stretch-card grid-margin">
       <div class="card" style="padding-top:10px;">
-        <center><img style="width: 80%;" src="assets/images/logo-banner.png"></center>
+        <div id="map_canvas" style="height: 354px; width:100%;"></div>
         <hr>
         <div class="card-body">
           <div class="table-responsive">
@@ -76,7 +78,10 @@ $Homepage = new Homepage();
     </div>
   </div>
 </div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoePlR12j4XnPgKCc0YWpI_7rtI6TPNms&callback=initMap&v=weekly" defer></script>
 <script type="text/javascript">
+  window.initMap = initMap;
+
   function getEntries() {
     var param = "status='D'";
     $("#dt_entries").DataTable().destroy();
@@ -110,6 +115,38 @@ $Homepage = new Homepage();
   }
 
   $(document).ready(function() {
+
     getEntries();
+    // Initialize and add the map
+
+
+    // window.initMap = initMap;
+
   });
+
+  function initMap() {
+    // The location of Uluru
+    const uluru = {
+      lat: -25.344,
+      lng: 131.031
+    };
+    // navigator.geolocation.getCurrentPosition(
+    //   function(position) {
+    //     initMap(position.coords.latitude, position.coords.longitude)
+    //   },
+    //   function errorCallback(error) {
+    //     console.log(error)
+    //   }
+    // );
+    // The map, centered at Uluru
+    const map = new google.maps.Map(document.getElementById("map_canvas"), {
+      zoom: 4,
+      center: uluru,
+    });
+    // The marker, positioned at Uluru
+    const marker = new google.maps.Marker({
+      position: uluru,
+      map: map,
+    });
+  }
 </script>
