@@ -39,7 +39,7 @@ if (isset($username) && isset($password)) {
 			} else {
 				$response["res"] = 0;
 			}
-			$response["res"] =  $mysqli_connect->insert_id;
+			// $response["res"] =  $mysqli_connect->insert_id;
 		} else {
 			$response["res"] = 0;
 		}
