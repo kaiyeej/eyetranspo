@@ -17,7 +17,7 @@ $response_array['array_data'] = array();
 $result = $mysqli_connect->query("UPDATE `tbl_users` SET `location`='$location' WHERE  `user_id`='$user_id'");
 
 if ($result) {
-    $response['response'] = 1;
+    $response['response'] = $user_id;
 } else {
     $response['response'] = 0;
 }
