@@ -9,7 +9,7 @@ require_once '../core_mobile/config.php';
 
 $user_id = $_REQUEST['user_id'];
 $response_array['array_data'] = array();
-$fetch = $mysqli_connect->query("SELECT * FROM tbl_trips where user_id='$user_id'");
+$fetch = $mysqli_connect->query("SELECT * FROM tbl_trips where user_id='$user_id' AND status!='A'");
 while ($row = $fetch->fetch_array()) {
     $response = array();
 

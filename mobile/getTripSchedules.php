@@ -9,7 +9,7 @@ require_once '../core_mobile/config.php';
 
 $cardinal_directions = $_REQUEST['cardinal_directions'];
 $response_array['array_data'] = array();
-$fetch = $mysqli_connect->query("SELECT * FROM tbl_trips AS t, tbl_trip_schedule AS ts WHERE t.trip_schedule_id=ts.trip_schedule_id AND ts.route='$cardinal_directions'");
+$fetch = $mysqli_connect->query("SELECT * FROM tbl_trips AS t, tbl_trip_schedule AS ts WHERE t.trip_schedule_id=ts.trip_schedule_id AND ts.route='$cardinal_directions'AND t.status!='A'");
 while ($row = $fetch->fetch_array()) {
     $response = array();
 
