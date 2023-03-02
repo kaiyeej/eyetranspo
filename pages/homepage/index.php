@@ -90,6 +90,7 @@ $Homepage = new Homepage();
       "bInfo": false,
       "paging": false,
       "ajax": {
+        "type": "POST",
         "url": "controllers/sql.php?c=Trips&q=show",
         "dataSrc": "data",
         "data": {
