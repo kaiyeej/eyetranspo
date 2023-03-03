@@ -115,6 +115,27 @@ class Users extends Connection
         return $response;
     }
 
+    
+    public function loc_checker()
+    {
+        
+        $location = $this->clean($this->inputs['location']);
+        $fetchPending = $this->select("tbl_trips", "user_id", "status = 'D'");
+        $loc = "";
+        while($pRow = $fetchPending->fetch_array()){
+            $result = $this->select("tbl_users", 'location', "user_id='$pRow[user_id]'");
+            $row = $result->fetch_array();
+
+            $loc .= $row['location'];
+        }
+
+        if($location != $loc){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+
 
     public function delete_entry()
     {
