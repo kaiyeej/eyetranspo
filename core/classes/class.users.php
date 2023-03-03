@@ -115,25 +115,68 @@ class Users extends Connection
         return $response;
     }
 
-    
+
     public function loc_checker()
     {
-        
+
         $location = $this->clean($this->inputs['location']);
         $fetchPending = $this->select("tbl_trips", "user_id", "status = 'D'");
         $loc = "";
-        while($pRow = $fetchPending->fetch_array()){
+        $counter = 1;
+        while ($pRow = $fetchPending->fetch_array()) {
             $result = $this->select("tbl_users", 'location', "user_id='$pRow[user_id]'");
             $row = $result->fetch_array();
 
             $loc .= $row['location'];
         }
 
-        if($location != $loc){
+        if ($location != $loc) {
             return 1;
-        }else{
+        } else {
             return 0;
         }
+    }
+
+    public function get_loc()
+    {
+
+        $fetchPending = $this->select("tbl_trips", "user_id", "status = 'D'");
+        $loc = "";
+        while ($pRow = $fetchPending->fetch_array()) {
+            $result = $this->select("tbl_users", 'location', "user_id='$pRow[user_id]'");
+            $row = $result->fetch_array();
+
+            $loc .= $row['location'];
+        }
+
+        return $loc;
+    }
+
+    public function location()
+    {
+
+        //$location = $this->clean($this->inputs['location']);
+        $fetchPending = $this->select("tbl_trips", "user_id,trip_schedule_id", "status = 'D'");
+        $loc = array();
+        $counter = 1;
+        while ($pRow = $fetchPending->fetch_array()) {
+            $result = $this->select("tbl_users", 'location', "user_id='$pRow[user_id]'");
+            $row = $result->fetch_array();
+
+            $fetchRoute = $this->select("tbl_trip_schedule", 'route', "trip_schedule_id='$pRow[trip_schedule_id]'");
+            $rowRoute = $fetchRoute->fetch_array();
+
+            $destination = explode(",", $row['location']);
+            $lat = $destination[0] * 1;
+            $lng = $destination[1] * 1;
+
+            // ['Bondi Beach', -33.890542, 151.274856, 4]
+            $loc[] = [$rowRoute[0], $lat, $lng, $counter];
+
+            $counter++;
+        }
+
+        return $loc;
     }
 
 
