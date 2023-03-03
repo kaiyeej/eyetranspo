@@ -75,7 +75,7 @@ $con = new Connection();
             <?php /* === MAP DATA === */ ?>
 
 
-            <input type="text" id="r_location">
+            <input type="hidden" id="r_location">
 
           </div><!-- .entry-content -->
 
