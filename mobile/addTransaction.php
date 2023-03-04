@@ -14,7 +14,7 @@ $destination = $_REQUEST['destination'];
 $fare = getTripFare($_REQUEST['trip_schedule_id']);
 $date = getCurrentDate();
 $response = array();
-$get_trips = $mysqli_connect->query("SELECT * FROM tbl_trips WHERE `status`!='A' AND trips='$trip_id'");
+$get_trips = $mysqli_connect->query("SELECT * FROM tbl_trips WHERE `status`!='A' AND trip_id='$trip_id'");
 $count = $get_trips->num_rows;
 if ($count > 0) {
     $fetch = $mysqli_connect->query("INSERT INTO `tbl_transactions` (`bus_id`, `trip_id`, `user_id`, `fare`, `status`,`date_added`, `destination`) VALUES ('$bus_id', '$trip_id', '$user_id', '$fare', 'P','$date','$destination')");
