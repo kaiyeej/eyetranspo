@@ -40,7 +40,7 @@ class Trips extends Connection
         $TripSchedule = new TripSchedule();
         $Users = new Users();
         $Buses = new Buses();
-        $param = isset($this->inputs['param']) ? $this->inputs['param'] : null;
+        $param = isset($this->inputs['param']) ? $this->inputs['param']." ORDER BY date_added DESC" : "trip_id > 0 ORDER BY date_added DESC";
         $rows = array();
         $count = 1;
         $result = $this->select($this->table, '*', $param);

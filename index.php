@@ -27,6 +27,9 @@ if (!isset($_SESSION["et_status"])) {
   <link rel="stylesheet" href="assets/sweetalert/sweetalert.css">
   <!-- plugins:js -->
   <script src="assets/vendors/js/vendor.bundle.base.js"></script>
+
+  <script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
+  <script type='text/javascript' src='assets/gmaps.js'></script>
   <!-- End plugin css for this page -->
   <!-- inject:css -->
   <!-- endinject -->

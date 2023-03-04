@@ -22,7 +22,7 @@ class Transactions extends Connection
         $Users = new Users();
         $Buses = new Buses();
         $Trips = new Trips();
-        $param = isset($this->inputs['param']) ? $this->inputs['param'] : null;
+        $param = isset($this->inputs['param']) ? $this->inputs['param']." ORDER BY date_added DESC" : "transaction_id > 0 ORDER BY date_added DESC";
         $rows = array();
         $count =1;
         $result = $this->select($this->table, '*', $param);
