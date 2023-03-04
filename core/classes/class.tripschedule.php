@@ -35,10 +35,11 @@ class TripSchedule extends Connection
         $rows = array();
         $BusRoutes = new BusRoutes();
         
-        $param = isset($this->inputs['param']) ? $this->inputs['param']." ORDER BY date_added DESC" : "trip_schedule_id > 0 ORDER BY date_added DESC";
+        $param = isset($this->inputs['param']) ? $this->inputs['param'] : "";
         $rows = array();
         $result = $this->select($this->table, '*', $param);
         while ($row = $result->fetch_assoc()) {
+            $row['name'] = $this->name_($row['trip_schedule_id']);
             $rows[] = $row;
         }
         return $rows;
@@ -62,6 +63,13 @@ class TripSchedule extends Connection
         $result = $this->select($this->table, "$this->name, route", "$this->pk = '$primary_id'");
         $row = $result->fetch_assoc();
         return "<i>".$row['route']."</i> - ".$row[$this->name];
+    }
+
+    public function name_($primary_id)
+    {
+        $result = $this->select($this->table, "$this->name, route", "$this->pk = '$primary_id'");
+        $row = $result->fetch_assoc();
+        return $row['route']." - ".$row[$this->name];
     }
 
     public function route_name($primary_id)

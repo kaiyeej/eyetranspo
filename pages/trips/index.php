@@ -147,7 +147,7 @@
     $(document).ready(function() {
         getEntries();
         getSelectOption('Buses', 'bus_id', 'bus_number');
-        getSelectOption('TripSchedule', 'trip_schedule_id', 'trip_schedule_time');
+        getSelectOption('TripSchedule', 'trip_schedule_id', 'name');
         getSelectOption('Users', 'user_id', 'user_fullname', "user_category = 'C'");
     });
 </script>
