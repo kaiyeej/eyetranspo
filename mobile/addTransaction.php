@@ -25,7 +25,7 @@ if ($count > 0) {
         $fetch["response"] = 0;
     }
 } else {
-    $fetch["response"] = 0;
+    $fetch["response"] = 2;
 }
 
 array_push($response_array['array_data'], $response);
