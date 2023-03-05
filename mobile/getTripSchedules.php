@@ -20,6 +20,7 @@ while ($row = $fetch->fetch_array()) {
     $response["date_departed"] = $row['date_departed'];
     $response["date_arrived"] = $row['date_arrived'];
     $response["headings"] = $row['headings'];
+    $response["status"] = $row['status'];
     $response["bus_route"] = getBusRoute($row['trip_schedule_id']);
     $response["conductor_id"] = $row['user_id'];
 
