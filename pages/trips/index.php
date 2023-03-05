@@ -42,12 +42,18 @@
     }
 
     function getTrips(id, status){
-        if(status != "A"){
-            $("#btn_arrived").show();
-        }else{
+        if(status == ""){
             $("#btn_arrived").hide();
+            $("#btn_departed").show();
+        }else{
+            if(status != "A"){
+                $("#btn_arrived").show();
+                $("#btn_departed").hide();
+            }else{
+                $("#btn_arrived").hide();
+                $("#btn_departed").show();
+            }
         }
-
         getEntryDetails(id);
         
     }
@@ -97,6 +103,55 @@
 
             $("#btn_arrived").prop('disabled', false);
             $("#btn_arrived").html("<span class='mdi mdi-check-all'></span> Arrived");
+        });
+       
+    }
+
+    function departed() {
+        $("#btn_departed").prop('disabled', true);
+        $("#btn_departed").html("<span class='fa fa-spinner fa-spin'></span>");
+
+        var id = $("#hidden_id").val();
+
+        swal({
+            title: "Are you sure?",
+            text: "This entries will be mark departed!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonClass: "btn-info",
+            cancelButtonClass: "btn-primary",
+            confirmButtonText: "Yes, mark as departed!",
+            cancelButtonText: "No, cancel!",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+        function(isConfirm) {
+            if (isConfirm) {
+                $.ajax({
+                    type: "POST",
+                    url: "controllers/sql.php?c=" + route_settings.class_name + "&q=departed",
+                    data: {
+                        input: {
+                            id: id
+                        }
+                    },
+                    success: function(data) {
+                        getEntries();
+                        var json = JSON.parse(data);
+                        if (json.data == 1) {
+                            success_arrived();
+                            $("#modalEntry").modal('hide');
+                        } else {
+                            failed_query(json);
+                        }
+                    }
+                });
+            } else {
+                swal("Cancelled", "Entries are safe :)", "error");
+            }
+
+            $("#btn_departed").prop('disabled', false);
+            $("#btn_departed").html("<span class='mdi mdi-bus'></span> Departed");
         });
        
     }

@@ -109,4 +109,17 @@ class Trips extends Connection
         return $this->update('tbl_transactions', $form_, "$this->pk = $primary_id");
     }
 
+    public function departed(){
+
+
+        $primary_id = $this->inputs['id'];
+        $form = array(
+            'status' => 'D',
+        );
+
+        return $this->update($this->table, $form, "$this->pk = $primary_id");
+
+    }
+    
+
 }

@@ -120,7 +120,7 @@ class Users extends Connection
     {
 
         $location = $this->clean($this->inputs['location']);
-        $fetchPending = $this->select("tbl_trips", "user_id", "status = 'D' OR status = ''");
+        $fetchPending = $this->select("tbl_trips", "user_id", "status = 'D'");
         $loc = "";
         $counter = 1;
         while ($pRow = $fetchPending->fetch_array()) {
@@ -140,7 +140,7 @@ class Users extends Connection
     public function get_loc()
     {
 
-        $fetchPending = $this->select("tbl_trips", "user_id", "status = 'D' OR status = ''");
+        $fetchPending = $this->select("tbl_trips", "user_id", "status = 'D'");
         $loc = "";
         while ($pRow = $fetchPending->fetch_array()) {
             $result = $this->select("tbl_users", 'location', "user_id='$pRow[user_id]'");
@@ -156,7 +156,7 @@ class Users extends Connection
     {
 
         //$location = $this->clean($this->inputs['location']);
-        $fetchPending = $this->select("tbl_trips", "user_id,trip_schedule_id", "status = 'D' OR status = ''");
+        $fetchPending = $this->select("tbl_trips", "user_id,trip_schedule_id", "status = 'D'");
         $loc = array();
         $counter = 1;
         while ($pRow = $fetchPending->fetch_array()) {
