@@ -5,7 +5,7 @@
                 <div class="modal-header">
                     <h4 class="modal-title" id="modalLabel"><span class='fa fa-pen'></span> Add Entry</h4>
                     <button class="btn btn-info btn-sm" id="btn_arrived" onclick="arrived()"><i class="mdi mdi-check-all"></i> Arrived</button>
-                    <button class="btn btn-primary btn-sm" id="btn_departed" onclick="departed()"><i class="mdi mdi-bus"></i> Departed</button>
+                    <button class="btn btn-warning btn-sm" id="btn_departed" onclick="departed()"><i class="mdi mdi-bus"></i> Departed</button>
                 </div>
                 <div class="modal-body">
                     <input type="hidden" id="hidden_id" name="input[trip_id]">
