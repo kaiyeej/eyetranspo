@@ -38,6 +38,7 @@
 
     function addTrips(){
         $("#btn_arrived").hide();
+        $("#btn_departed").hide();
         addModal();
     }
 
