@@ -11,7 +11,7 @@ $trip_id = $_REQUEST['trip_id'];
 $response_array['array_data'] = array();
 
 $response = array();
-$fetch_trans = $mysqli_connect->query("UPDATE `tbl_transactions` SET `status`='C' WHERE trip_id='$trip_id' AND `status`='P'");
+$fetch_trans = $mysqli_connect->query("UPDATE `tbl_transactions` SET `status`='C' WHERE trip_id='$trip_id' AND `status`=(`status`='P' AND `status`='B')");
 
 if ($fetch_trans) {
     $response["response"] = 1;
