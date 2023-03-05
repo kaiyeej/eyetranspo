@@ -88,7 +88,7 @@ $con = new Connection();
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoePlR12j4XnPgKCc0YWpI_7rtI6TPNms&callback=initMap&v=weekly" defer></script>
 <script type="text/javascript">
   function getEntries() {
-    var param = "status = 'D' OR status = ''";
+    var param = "status = 'D'";
     $("#dt_entries").DataTable().destroy();
     $("#dt_entries").DataTable({
       "processing": true,
