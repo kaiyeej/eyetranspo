@@ -14,7 +14,15 @@
                         <option value="">Please Select:</option>
                     </select>
                 </div>
-                <div class="col-md-8" style="padding-top: 20px;">
+                <div class="col-md-4">
+                    <label><strong>Route</strong></label>
+                    <select class="form-control input-item" style="width: 100%;height: 35px;" name="input[route_name]" id="route_name" required>
+                        <option value="-1">&mdash; ALL &mdash;</option>
+                        <option value="TO LA CASTELLANA">TO LA CASTELLANA</option>
+                        <option value="TO BACOLOD">TO BACOLOD</option>
+                    </select>
+                </div>
+                <div class="col-md-4" style="padding-top: 20px;">
                     <div class="btn-group">
                         <button type="submit" id="btn_generate" onclick="getEntries()" class="btn btn-primary btn-sm">
                             <span class="icon">
@@ -62,6 +70,7 @@
 
     function getEntries() {
         var bus_id = $("#bus_id").val();
+        var route_name = $("#route_name").val();
         $("#dt_entries").DataTable().destroy();
         $("#dt_entries").DataTable({
             "processing": true,
@@ -74,7 +83,8 @@
                 "method": "POST",
                 "data": {
                     input: {
-                        bus_id: bus_id
+                        bus_id: bus_id,
+                        route_name:route_name
                     }
                 },
             },

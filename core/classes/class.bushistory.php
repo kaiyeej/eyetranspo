@@ -10,11 +10,13 @@ class BusHistory extends Connection
     {
         $rows = array();
         $TripSchedule = new TripSchedule();
+        $Trips = new Trips();
         $Users = new Users();
         $Buses = new Buses();
         $rows = array();
         $count = 1;
 
+        $route_name = $this->inputs['route_name'];
         $bus_id = $this->inputs['bus_id'];
 
         if ($bus_id == -1) {
@@ -25,14 +27,17 @@ class BusHistory extends Connection
 
         $result = $this->select($this->table, '*', $param);
         while ($row = $result->fetch_assoc()) {
-            $row['count'] = $count;
-            $row['bus'] = $Buses->name($row['bus_id']);
-            $row['conductor'] = $row['user_id'] == 0 ? "---" : $Users->fullname($row['user_id']);
-            $row['date'] = date('M d h:i A', strtotime($row["date_departed"])) . " - " . date('M d h:i A', strtotime($row["date_arrived"]));
-            $row['schedule'] = $TripSchedule->name($row['trip_schedule_id']);
-            $rows[] = $row;
+            $trip = $Trips->trip_sched($row['trip_id']);
+            if ($route_name == -1 or $trip == $route_name) {
+                $row['count'] = $count;
+                $row['bus'] = $Buses->name($row['bus_id']);
+                $row['conductor'] = $row['user_id'] == 0 ? "---" : $Users->fullname($row['user_id']);
+                $row['date'] = date('M d h:i A', strtotime($row["date_departed"])) . " - " . date('M d h:i A', strtotime($row["date_arrived"]));
+                $row['schedule'] = $TripSchedule->name($row['trip_schedule_id']);
+                $rows[] = $row;
 
-            $count++;
+                $count++;
+            }
         }
         return $rows;
     }
@@ -46,6 +51,7 @@ class BusHistory extends Connection
         $rows = array();
         $count = 1;
 
+        $route_name = $this->inputs['route_name'];
         $bus_id = $this->inputs['bus_id'];
 
         if ($bus_id == -1) {
@@ -56,14 +62,17 @@ class BusHistory extends Connection
 
         $result = $this->select("tbl_transactions", '*', "remarks!='' $param");
         while ($row = $result->fetch_assoc()) {
-            $row['count'] = $count;
-            $row['bus'] = $row['bus_id'] == 0 ? "---" : $Buses->name($row['bus_id']);
-            $row['passenger'] = $row['user_id'] == 0 ? "---" : $Users->fullname($row['user_id']);
-            $row['trip'] = $Trips->trip_sched($row['trip_id']);
-            $row['remarks'] = $row['remarks'];
-            $rows[] = $row;
+            $trip = $Trips->trip_sched($row['trip_id']);
+            if ($route_name == -1 or $trip == $route_name) {
+                $row['count'] = $count;
+                $row['bus'] = $row['bus_id'] == 0 ? "---" : $Buses->name($row['bus_id']);
+                $row['passenger'] = $row['user_id'] == 0 ? "---" : $Users->fullname($row['user_id']);
+                $row['trip'] = $Trips->trip_sched($row['trip_id']);
+                $row['remarks'] = $row['remarks'];
+                $rows[] = $row;
 
-            $count++;
+                $count++;
+            }
         }
         return $rows;
     }
@@ -89,7 +98,7 @@ class BusHistory extends Connection
         $result = $this->select("tbl_transactions", '*', "DATE(date_added) = '$date_added'");
         while ($row = $result->fetch_assoc()) {
             $trip = $Trips->trip_sched($row['trip_id']);
-            if ($route_name == -1 OR $trip == $route_name){
+            if ($route_name == -1 or $trip == $route_name) {
                 $row['count'] = $count;
                 $row['bus'] = $row['bus_id'] == 0 ? "---" : $Buses->name($row['bus_id']);
                 $row['passenger'] = $row['user_id'] == 0 ? "---" : $Users->fullname($row['user_id']);
