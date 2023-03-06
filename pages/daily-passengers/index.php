@@ -54,7 +54,7 @@
                                 <th>#</th>
                                 <th>Bus</th>
                                 <th>Trip</th>
-                                <th>Fare</th>
+                                <!-- <th>Fare</th> -->
                                 <th>Passenger</th>
                                 <th>Complaints</th>
                             </tr>
@@ -96,9 +96,9 @@
                 {
                     "data": "trip"
                 },
-                {
-                    "data": "fare"
-                },
+                // {
+                //     "data": "fare"
+                // },
                 {
                     "data": "passenger"
                 },
